@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Plus, Download, Printer, CheckCircle, Clock, Users, Activity } from 'lucide-react'
 import Sidebar from '../components/layout/Sidebar'
@@ -465,125 +466,282 @@ export function ReceptionInvoices() {
 }
 
 // ══════════════════════════════════════════════════════════════════
-// ADMIN DASHBOARD
+// ADMIN DASHBOARD — LUXURY PREMIUM REDESIGN
 // ══════════════════════════════════════════════════════════════════
 const revenueData = [
-  { month: 'Nov', revenue: 185 }, { month: 'Dec', revenue: 210 }, { month: 'Jan', revenue: 198 },
-  { month: 'Feb', revenue: 234 }, { month: 'Mar', revenue: 248 }, { month: 'Apr', revenue: 262 }, { month: 'May', revenue: 284 },
+  { month: 'Nov', revenue: 185, appointments: 98 },
+  { month: 'Dec', revenue: 210, appointments: 112 },
+  { month: 'Jan', revenue: 198, appointments: 104 },
+  { month: 'Feb', revenue: 234, appointments: 128 },
+  { month: 'Mar', revenue: 248, appointments: 136 },
+  { month: 'Apr', revenue: 262, appointments: 144 },
+  { month: 'May', revenue: 284, appointments: 156 },
 ]
 const serviceData = [
-  { name: 'Checkup', value: 38, fill: '#00e5a0' }, { name: 'Vaccination', value: 24, fill: '#4da6ff' },
-  { name: 'Surgery', value: 15, fill: '#ff4d6d' }, { name: 'Grooming', value: 13, fill: '#ffb84d' },
+  { name: 'Checkup', value: 38, fill: '#00e5a0' },
+  { name: 'Vaccination', value: 24, fill: '#4da6ff' },
+  { name: 'Surgery', value: 15, fill: '#ff4d6d' },
+  { name: 'Grooming', value: 13, fill: '#ffb84d' },
   { name: 'Dental', value: 10, fill: '#b48aff' },
 ]
 
-export function AdminDashboard() {
+function AdminLayout({ title, subtitle, children, action }) {
   return (
-    <DashLayout title="Admin Analytics">
-      <SectionHeader title="Analytics Overview" subtitle="May 2026 · Live data"
-        action={
-          <div className="flex gap-2">
-            <button className="btn-ghost text-xs py-2 px-4">This Month</button>
-            <button className="btn-primary text-xs py-2 px-4" onClick={() => toast('Exporting report...')}>Export</button>
+    <div className="flex h-screen bg-bg overflow-hidden">
+      <Sidebar />
+      <div className="flex-1 flex flex-col overflow-hidden min-w-0">
+        {/* Premium topbar */}
+        <header className="h-[64px] border-b border-white/[0.06] flex items-center justify-between px-6 flex-shrink-0"
+          style={{ background: 'rgba(10,13,20,0.8)', backdropFilter: 'blur(20px)' }}>
+          <div>
+            <h1 className="text-white font-semibold text-sm leading-none">{title}</h1>
+            {subtitle && <p className="text-white/25 text-xs mt-0.5">{subtitle}</p>}
           </div>
-        } />
+          <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2 rounded-xl px-3 py-2 text-xs text-white/25 border border-white/[0.06] bg-white/[0.02]">
+              <span>🔍</span>
+              <input className="bg-transparent outline-none w-32 placeholder:text-white/15 text-white/70" placeholder="Search anything..." />
+              <span className="text-white/10 text-[10px] border border-white/10 rounded px-1 py-0.5">⌘K</span>
+            </div>
+            <button className="w-9 h-9 rounded-xl border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-sm hover:border-white/10 hover:bg-white/5 transition-all relative"
+              onClick={() => toast('3 new notifications')}>
+              🔔
+              <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-red rounded-full animate-pulse" />
+            </button>
+            <button className="w-9 h-9 rounded-xl border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-sm hover:border-white/10 transition-all">
+              📤
+            </button>
+            {action && <div>{action}</div>}
+          </div>
+        </header>
+        <main className="flex-1 overflow-y-auto" style={{ background: 'radial-gradient(ellipse at top, rgba(0,229,160,0.02) 0%, transparent 50%), #080b12' }}>
+          <div className="p-6">{children}</div>
+        </main>
+      </div>
+    </div>
+  )
+}
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
-        <StatCard icon="💰" value="฿284K" label="Monthly Revenue" color="green" change="12% vs last month" changeUp delay={0} />
-        <StatCard icon="📅" value="312" label="Appointments" color="blue" change="8% vs last month" changeUp delay={0.06} />
-        <StatCard icon="🐾" value="1,847" label="Registered Pets" color="purple" change="24 new" changeUp delay={0.12} />
-        <StatCard icon="👥" value="1,203" label="Active Clients" color="amber" change="16 new" changeUp delay={0.18} />
-        <StatCard icon="💉" value="89" label="Vaccines/Month" color="teal" change="3% vs last" changeUp={false} delay={0.24} />
-        <StatCard icon="⭐" value="4.8" label="Avg Rating" color="amber" change="+0.1" changeUp delay={0.30} />
+// Premium stat card with glow
+function PremiumStat({ icon, value, label, change, changeUp, color, delay = 0, glow }) {
+  const colors = {
+    green:  { bg: 'rgba(0,229,160,0.08)',  border: 'rgba(0,229,160,0.15)',  text: '#00e5a0',  shadow: '0 0 30px rgba(0,229,160,0.08)' },
+    amber:  { bg: 'rgba(255,184,77,0.08)', border: 'rgba(255,184,77,0.15)', text: '#ffb84d',  shadow: '0 0 30px rgba(255,184,77,0.08)' },
+    blue:   { bg: 'rgba(77,166,255,0.08)', border: 'rgba(77,166,255,0.15)', text: '#4da6ff',  shadow: '0 0 30px rgba(77,166,255,0.08)' },
+    red:    { bg: 'rgba(255,77,109,0.08)', border: 'rgba(255,77,109,0.15)', text: '#ff4d6d',  shadow: '0 0 30px rgba(255,77,109,0.08)' },
+    purple: { bg: 'rgba(180,138,255,0.08)',border: 'rgba(180,138,255,0.15)',text: '#b48aff',  shadow: '0 0 30px rgba(180,138,255,0.08)' },
+    teal:   { bg: 'rgba(45,212,191,0.08)', border: 'rgba(45,212,191,0.15)', text: '#2dd4bf',  shadow: '0 0 30px rgba(45,212,191,0.08)' },
+  }
+  const c = colors[color] || colors.green
+  return (
+    <motion.div
+      className="relative rounded-2xl p-5 overflow-hidden cursor-default group"
+      style={{ background: 'rgba(15,18,28,0.8)', border: `1px solid ${c.border}`, boxShadow: glow ? c.shadow : 'none' }}
+      initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay, duration: 0.5 }}
+      whileHover={{ y: -3, boxShadow: c.shadow.replace('0.08','0.18') }}>
+      {/* Ambient glow bg */}
+      <div className="absolute top-0 right-0 w-24 h-24 rounded-full opacity-20 pointer-events-none"
+        style={{ background: `radial-gradient(circle, ${c.text}, transparent)`, filter: 'blur(20px)', transform: 'translate(30%,-30%)' }} />
+      <div className="relative z-10">
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg mb-4"
+          style={{ background: c.bg, border: `1px solid ${c.border}` }}>
+          {icon}
+        </div>
+        <div className="font-display text-3xl text-white leading-none mb-1.5">{value}</div>
+        <div className="text-white/35 text-xs font-medium mb-2">{label}</div>
+        {change && (
+          <div className={`flex items-center gap-1 text-xs font-medium ${changeUp ? 'text-green' : 'text-red'}`}>
+            <span>{changeUp ? '↑' : '↓'}</span>
+            <span>{change}</span>
+          </div>
+        )}
+      </div>
+    </motion.div>
+  )
+}
+
+export function AdminDashboard() {
+  const [period, setPeriod] = useState('month')
+
+  return (
+    <AdminLayout title="Analytics Dashboard" subtitle="May 2026 · Real-time overview">
+      {/* Period selector */}
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <div>
+          <h2 className="font-display text-2xl text-white">Good morning, Admin 👑</h2>
+          <p className="text-white/30 text-sm mt-0.5">Here's what's happening at PawCare today.</p>
+        </div>
+        <div className="flex items-center gap-2">
+          {['week','month','year'].map(p => (
+            <button key={p} onClick={() => setPeriod(p)}
+              className={clsx('px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 capitalize',
+                period === p ? 'bg-green text-bg' : 'glass text-white/40 hover:text-white')}>
+              {p}
+            </button>
+          ))}
+          <button className="btn-primary text-xs py-2 px-4 ml-1" onClick={() => toast('Generating report...')}>
+            📊 Export
+          </button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        {/* Revenue chart */}
-        <div className="lg:col-span-2 glass rounded-2xl p-5">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-white">Revenue (Last 7 Months)</h3>
-            <span className="text-xs text-white/30">฿ Thousands</span>
+      {/* KPI Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+        <PremiumStat icon="💰" value="฿284K" label="Revenue" color="green" change="12% vs last month" changeUp glow delay={0} />
+        <PremiumStat icon="📅" value="312"   label="Appointments" color="blue"   change="8% growth" changeUp glow delay={0.05} />
+        <PremiumStat icon="🐾" value="1,847" label="Pets Registered" color="purple" change="24 new" changeUp delay={0.1} />
+        <PremiumStat icon="👥" value="1,203" label="Active Clients" color="amber"  change="16 new" changeUp delay={0.15} />
+        <PremiumStat icon="💉" value="89"    label="Vaccines" color="teal"   change="3% vs last" changeUp={false} delay={0.2} />
+        <PremiumStat icon="⭐" value="4.8"   label="Avg Rating" color="amber"  change="+0.1 pts" changeUp delay={0.25} />
+      </div>
+
+      {/* Charts row */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">
+        {/* Revenue Area Chart */}
+        <div className="lg:col-span-2 rounded-2xl p-5"
+          style={{ background: 'rgba(15,18,28,0.8)', border: '1px solid rgba(255,255,255,0.05)' }}>
+          <div className="flex items-center justify-between mb-5">
+            <div>
+              <h3 className="font-semibold text-white">Revenue Overview</h3>
+              <p className="text-white/25 text-xs mt-0.5">Monthly revenue in ฿ thousands</p>
+            </div>
+            <div className="flex gap-3 text-xs">
+              <span className="flex items-center gap-1.5 text-white/40"><span className="w-2.5 h-0.5 bg-green rounded-full inline-block"/>Revenue</span>
+              <span className="flex items-center gap-1.5 text-white/40"><span className="w-2.5 h-0.5 bg-blue rounded-full inline-block"/>Appointments</span>
+            </div>
           </div>
-          <ResponsiveContainer width="100%" height={180}>
-            <AreaChart data={revenueData}>
+          <ResponsiveContainer width="100%" height={190}>
+            <AreaChart data={revenueData} margin={{ top: 5, right: 5, bottom: 0, left: -20 }}>
               <defs>
-                <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#00e5a0" stopOpacity={0.2} />
+                <linearGradient id="revG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%"  stopColor="#00e5a0" stopOpacity={0.25} />
                   <stop offset="95%" stopColor="#00e5a0" stopOpacity={0} />
                 </linearGradient>
+                <linearGradient id="apptG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%"  stopColor="#4da6ff" stopOpacity={0.15} />
+                  <stop offset="95%" stopColor="#4da6ff" stopOpacity={0} />
+                </linearGradient>
               </defs>
-              <XAxis dataKey="month" tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 11 }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 11 }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: '#1a2035', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, color: '#fff' }} formatter={v => [`฿${v}K`, 'Revenue']} />
-              <Area type="monotone" dataKey="revenue" stroke="#00e5a0" strokeWidth={2} fill="url(#revGrad)" />
+              <XAxis dataKey="month" tick={{ fill:'rgba(255,255,255,0.2)', fontSize:11 }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fill:'rgba(255,255,255,0.2)', fontSize:11 }} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ background:'#0f121c', border:'1px solid rgba(255,255,255,0.08)', borderRadius:12, color:'#fff', fontSize:12 }}
+                formatter={(v,n)=>[n==='revenue'?`฿${v}K`:v, n==='revenue'?'Revenue':'Appts']} />
+              <Area type="monotone" dataKey="revenue"      stroke="#00e5a0" strokeWidth={2} fill="url(#revG)" dot={false} />
+              <Area type="monotone" dataKey="appointments" stroke="#4da6ff" strokeWidth={2} fill="url(#apptG)" dot={false} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Service distribution */}
-        <div className="glass rounded-2xl p-5">
-          <h3 className="font-semibold text-white mb-4">Service Mix</h3>
-          <ResponsiveContainer width="100%" height={140}>
+        {/* Service Mix Donut */}
+        <div className="rounded-2xl p-5"
+          style={{ background: 'rgba(15,18,28,0.8)', border: '1px solid rgba(255,255,255,0.05)' }}>
+          <h3 className="font-semibold text-white mb-1">Service Mix</h3>
+          <p className="text-white/25 text-xs mb-4">By appointment type</p>
+          <ResponsiveContainer width="100%" height={150}>
             <PieChart>
-              <Pie data={serviceData} cx="50%" cy="50%" innerRadius={40} outerRadius={65} paddingAngle={3} dataKey="value">
-                {serviceData.map((e, i) => <Cell key={i} fill={e.fill} />)}
+              <Pie data={serviceData} cx="50%" cy="50%" innerRadius={42} outerRadius={65} paddingAngle={4} dataKey="value" strokeWidth={0}>
+                {serviceData.map((e, i) => <Cell key={i} fill={e.fill} opacity={0.9} />)}
               </Pie>
-              <Tooltip contentStyle={{ background: '#1a2035', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, color: '#fff' }} formatter={v => [`${v}%`]} />
+              <Tooltip contentStyle={{ background:'#0f121c', border:'1px solid rgba(255,255,255,0.08)', borderRadius:10, color:'#fff', fontSize:11 }} formatter={v=>[`${v}%`]} />
             </PieChart>
           </ResponsiveContainer>
           <div className="space-y-2 mt-2">
             {serviceData.map(s => (
-              <div key={s.name}>
-                <div className="flex justify-between text-xs mb-1"><span className="text-white/40">{s.name}</span><span className="font-medium" style={{ color: s.fill }}>{s.value}%</span></div>
-                <ProgressBar value={s.value} color="" />
+              <div key={s.name} className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: s.fill }} />
+                <span className="text-white/40 text-xs flex-1">{s.name}</span>
+                <span className="text-xs font-semibold" style={{ color: s.fill }}>{s.value}%</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent appointments */}
-        <div className="glass rounded-2xl p-5">
-          <h3 className="font-semibold text-white mb-4">Recent Appointments</h3>
-          <TableWrap>
-            <thead><tr><th>Patient</th><th>Service</th><th>Vet</th><th>Status</th></tr></thead>
-            <tbody>
-              {DEMO_APPOINTMENTS.slice(0, 5).map((a, i) => (
-                <tr key={i}>
-                  <td className="text-white font-medium">{a.pet_name}</td>
-                  <td className="text-xs">{a.service}</td>
-                  <td className="text-xs text-white/30">{a.vet}</td>
-                  <td><StatusBadge status={a.status} /></td>
+      {/* Bottom row */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        {/* Recent activity */}
+        <div className="lg:col-span-2 rounded-2xl p-5"
+          style={{ background:'rgba(15,18,28,0.8)', border:'1px solid rgba(255,255,255,0.05)' }}>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-white">Recent Appointments</h3>
+            <Link to="/dashboard/admin/appointments" className="text-green text-xs hover:underline">View all →</Link>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-white/[0.04]">
+                  {['Time','Pet','Service','Vet','Status','Fee'].map(h => (
+                    <th key={h} className="text-left py-2.5 px-2 text-white/20 font-semibold uppercase tracking-wider text-[10px] first:pl-0">{h}</th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </TableWrap>
+              </thead>
+              <tbody>
+                {DEMO_APPOINTMENTS.slice(0,5).map((a,i) => (
+                  <motion.tr key={i} className="border-b border-white/[0.03] hover:bg-white/[0.02] transition-colors"
+                    initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay: i*0.05 }}>
+                    <td className="py-3 pl-0 pr-2 text-white/30">{a.time}</td>
+                    <td className="py-3 px-2 text-white font-medium">{a.pet_name}</td>
+                    <td className="py-3 px-2 text-white/50">{a.service}</td>
+                    <td className="py-3 px-2 text-white/30">{a.vet.replace('Dr. ','')}</td>
+                    <td className="py-3 px-2"><StatusBadge status={a.status} /></td>
+                    <td className="py-3 px-2 text-green font-display text-sm">฿{a.fee}</td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        {/* Top vets */}
-        <div className="glass rounded-2xl p-5">
-          <h3 className="font-semibold text-white mb-4">Top Performing Vets</h3>
+        {/* Top vets leaderboard */}
+        <div className="rounded-2xl p-5"
+          style={{ background:'rgba(15,18,28,0.8)', border:'1px solid rgba(255,255,255,0.05)' }}>
+          <h3 className="font-semibold text-white mb-4">Top Vets — May</h3>
           <div className="space-y-3">
             {[
-              { name: 'Dr. Somchai Panya', appts: 142, rev: '฿89K', rating: '4.9', color: 'green', emoji: '👨‍⚕️' },
-              { name: 'Dr. Nattaya Siri', appts: 98, rev: '฿124K', rating: '4.8', color: 'amber', emoji: '👩‍⚕️' },
-              { name: 'Dr. James Wong', appts: 76, rev: '฿45K', rating: '4.9', color: 'blue', emoji: '👨‍⚕️' },
-              { name: 'Dr. Priya Mehta', appts: 63, rev: '฿38K', rating: '4.7', color: 'purple', emoji: '👩‍⚕️' },
-            ].map((v, i) => (
-              <div key={v.name} className="flex items-center gap-3 py-2 border-b border-white/5 last:border-0">
-                <div className={`w-8 h-8 rounded-full bg-${v.color}/10 flex items-center justify-center text-base flex-shrink-0`}>{v.emoji}</div>
-                <div className="flex-1">
-                  <div className="text-sm font-medium text-white">{v.name}</div>
-                  <div className="text-xs text-white/30">{v.appts} appts · {v.rev}</div>
+              { name:'Dr. Somchai',  spec:'Internal Med', appts:142, rev:'฿89K', r:'4.9', emoji:'👨‍⚕️', c:'#00e5a0', rank:1 },
+              { name:'Dr. Nattaya',  spec:'Surgery',       appts:98,  rev:'฿124K',r:'4.8', emoji:'👩‍⚕️', c:'#4da6ff', rank:2 },
+              { name:'Dr. James',    spec:'Exotic',        appts:76,  rev:'฿45K', r:'4.9', emoji:'👨‍⚕️', c:'#b48aff', rank:3 },
+              { name:'Dr. Priya',    spec:'Dermatology',   appts:63,  rev:'฿38K', r:'4.7', emoji:'👩‍⚕️', c:'#ffb84d', rank:4 },
+            ].map((v,i) => (
+              <motion.div key={v.name} className="flex items-center gap-3 group"
+                initial={{ opacity:0, x:10 }} animate={{ opacity:1, x:0 }} transition={{ delay:i*0.08 }}>
+                <div className="w-5 text-center text-xs font-bold"
+                  style={{ color: v.rank<=3 ? ['#ffd700','#c0c0c0','#cd7f32'][v.rank-1] : 'rgba(255,255,255,0.2)' }}>
+                  {v.rank <= 3 ? ['🥇','🥈','🥉'][v.rank-1] : v.rank}
                 </div>
-                <span className="text-amber text-xs">★ {v.rating}</span>
-              </div>
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center text-lg flex-shrink-0"
+                  style={{ background: `${v.c}15`, border: `1px solid ${v.c}30` }}>
+                  {v.emoji}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-white text-xs font-semibold truncate">{v.name}</div>
+                  <div className="text-white/25 text-[10px]">{v.appts} appts · {v.rev}</div>
+                </div>
+                <div className="text-amber text-xs font-semibold">★{v.r}</div>
+              </motion.div>
             ))}
+          </div>
+
+          {/* Mini bar chart */}
+          <div className="mt-5 pt-4 border-t border-white/[0.04]">
+            <div className="text-white/20 text-[10px] uppercase tracking-wider mb-3">Appointment Volume</div>
+            <div className="space-y-2">
+              {[{ name:'Dr. Somchai',v:142,c:'#00e5a0'},{name:'Dr. Nattaya',v:98,c:'#4da6ff'},{name:'Dr. James',v:76,c:'#b48aff'},{name:'Dr. Priya',v:63,c:'#ffb84d'}].map(b => (
+                <div key={b.name} className="flex items-center gap-2">
+                  <div className="text-white/25 text-[10px] w-20 truncate">{b.name.replace('Dr. ','')}</div>
+                  <div className="flex-1 h-1.5 bg-white/[0.04] rounded-full overflow-hidden">
+                    <motion.div className="h-full rounded-full" style={{ background: b.c }}
+                      initial={{ width:0 }} animate={{ width:`${(b.v/142)*100}%` }}
+                      transition={{ delay: 0.5, duration:1, ease:'easeOut' }} />
+                  </div>
+                  <div className="text-white/30 text-[10px] w-6 text-right">{b.v}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </DashLayout>
+    </AdminLayout>
   )
 }
 

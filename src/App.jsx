@@ -4,7 +4,7 @@ import { AppProvider, useApp } from './lib/AppContext'
 import { LoadingScreen } from './components/shared/UI'
 
 // Public pages
-import { HomePage, AboutPage, ServicesPage, VetsPage, BlogPage, ContactPage, BookingPage, LoginPage, RegisterPage } from './pages/PublicPages'
+import { HomePage, AboutPage, ServicesPage, VetsPage, BlogPage, ContactPage, BookingPage, LoginPage, RegisterPage, PortalSelectPage } from './pages/PublicPages'
 
 // Owner dashboard
 import { OwnerDashboard, OwnerPets, OwnerRecords, OwnerVaccines, OwnerAppointments, OwnerBilling } from './pages/OwnerPages'
@@ -39,6 +39,7 @@ function AppRoutes() {
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/booking" element={<BookingPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/portals" element={<PortalSelectPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
       {/* Owner Dashboard */}
