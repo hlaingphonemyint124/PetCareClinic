@@ -141,10 +141,33 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <div className="flex gap-3 mt-4">
-              <Link to="/login" className="btn-ghost flex-1 justify-center text-sm py-2.5" onClick={() => setMobileOpen(false)}>Sign In</Link>
-              <Link to="/booking" className="btn-primary flex-1 justify-center text-sm" onClick={() => setMobileOpen(false)}>Book Now</Link>
-            </div>
+            {user ? (
+              <div className="mt-4 space-y-2">
+                <div className="flex items-center gap-3 px-1 py-2 border-b border-white/[0.06]">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
+                    style={{ background:`${rc}20`, color: rc }}>
+                    {user.avatar || user.name?.[0] || '?'}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-white text-sm font-semibold truncate leading-none">{user.name}</div>
+                    <div className="text-white/30 text-[11px] truncate">{user.email}</div>
+                  </div>
+                </div>
+                <button onClick={() => { navigate(getDashboardPath(user.role)); setMobileOpen(false) }}
+                  className="w-full text-left px-3 py-2.5 rounded-xl text-sm text-white/60 hover:text-white hover:bg-white/5 transition-all">
+                  📊 My Dashboard
+                </button>
+                <button onClick={() => { logout(); setMobileOpen(false) }}
+                  className="w-full text-left px-3 py-2.5 rounded-xl text-sm text-red/70 hover:text-red hover:bg-red/5 transition-all">
+                  🚪 Sign Out
+                </button>
+              </div>
+            ) : (
+              <div className="flex gap-3 mt-4">
+                <Link to="/login" className="btn-ghost flex-1 justify-center text-sm py-2.5" onClick={() => setMobileOpen(false)}>Sign In</Link>
+                <Link to="/booking" className="btn-primary flex-1 justify-center text-sm" onClick={() => setMobileOpen(false)}>Book Now</Link>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

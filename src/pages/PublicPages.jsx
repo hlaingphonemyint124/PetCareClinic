@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate, Navigate } from 'react-router-dom'
+import { Link, useNavigate, Navigate, useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../lib/AppContext'
 import Navbar from '../components/layout/Navbar'
@@ -447,16 +447,20 @@ export function BookingPage() {
 // LOGIN PAGE — CLEAN, NO DEMO BUTTONS
 // ══════════════════════════════════════════════════════════════════
 export function LoginPage() {
-  const { login, user, getDashboardPath } = useApp()
-  const navigate = useNavigate()
+  const { login, user } = useApp()
+  const [searchParams] = useSearchParams()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showPass, setShowPass] = useState(false)
 
-  // Already logged in — redirect
-  if (user) return <Navigate to={getDashboardPath(user.role)} replace />
+  // Once user is set (after login or on revisit), redirect to homepage
+  // unless a specific ?next= destination was requested (e.g. /booking)
+  if (user) {
+    const next = searchParams.get('next')
+    return <Navigate to={next || '/'} replace />
+  }
 
   const handleSubmit = async (e) => {
     e?.preventDefault()
@@ -467,7 +471,8 @@ export function LoginPage() {
     setLoading(false)
     if (result.success) {
       toast.success(`Welcome back, ${result.user.name.split(' ')[0]}!`)
-      navigate(getDashboardPath(result.user.role))
+      // No navigate() here — setting user in AppContext triggers re-render,
+      // which hits the if(user) guard above and redirects correctly.
     } else {
       setError(result.error || 'Invalid email or password.')
     }
@@ -545,6 +550,14 @@ export function LoginPage() {
           <div className="lg:hidden flex items-center gap-2.5 mb-8">
             <div className="w-9 h-9 bg-green rounded-xl flex items-center justify-center text-lg shadow-green-glow">🐾</div>
             <span className="font-display text-lg text-white">PawCare</span>
+          </div>
+
+          {/* Back to website */}
+          <div className="mb-6">
+            <Link to="/" className="inline-flex items-center gap-1.5 text-xs text-white/30 hover:text-white/60 transition-colors duration-200 group">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:-translate-x-0.5 transition-transform duration-200"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+              Back to website
+            </Link>
           </div>
 
           {/* Heading */}
@@ -644,12 +657,15 @@ export function LoginPage() {
 // REGISTER PAGE — CLEAN
 // ══════════════════════════════════════════════════════════════════
 export function RegisterPage() {
-  const { register, getDashboardPath } = useApp()
+  const { register, user } = useApp()
   const navigate = useNavigate()
   const [form, setForm] = useState({ firstName:'', lastName:'', email:'', phone:'', password:'', confirm:'' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showPass, setShowPass] = useState(false)
+
+  // Auto-redirect to homepage once user is set after registration
+  if (user) return <Navigate to="/" replace />
 
   const set = (k) => (e) => { setForm(f=>({...f,[k]:e.target.value})); setError('') }
 
@@ -663,11 +679,12 @@ export function RegisterPage() {
     setLoading(false)
     if (result.success) {
       if (result.message) {
+        // Email verification required — send to login
         toast.success(result.message)
         navigate('/login')
       } else {
+        // Auto-logged in — let if(user) guard above handle the redirect
         toast.success(`Welcome, ${form.firstName}!`)
-        navigate(getDashboardPath(result.user.role))
       }
     } else {
       setError(result.error)

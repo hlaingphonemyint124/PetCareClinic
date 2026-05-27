@@ -17,10 +17,10 @@ import {
 } from './pages/DashboardPages'
 
 function ProtectedRoute({ children, roles }) {
-  const { user, loading } = useApp()
+  const { user, loading, getDashboardPath } = useApp()
   if (loading) return <LoadingScreen />
   if (!user) return <Navigate to="/login" replace />
-  if (roles && !roles.includes(user.role)) return <Navigate to="/" replace />
+  if (roles && !roles.includes(user.role)) return <Navigate to={getDashboardPath(user.role)} replace />
   return children
 }
 
