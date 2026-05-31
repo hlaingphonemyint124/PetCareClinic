@@ -43,7 +43,7 @@ export function Modal({ open, onClose, title, children, size = 'md' }) {
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between px-7 py-5 border-b border-white/5">
+            <div className="flex items-center justify-between px-7 py-5" style={{borderBottom:'1px solid rgba(201,168,76,0.1)'}}>
               <h2 className="font-display text-xl text-white">{title}</h2>
               <button onClick={onClose} className="w-8 h-8 rounded-full bg-white/5 hover:bg-red/10 hover:text-red flex items-center justify-center text-white/40 transition-all duration-200">
                 <X size={15} />
@@ -63,7 +63,7 @@ export function Spinner({ size = 'md', color = 'green' }) {
   return (
     <div className={clsx(
       sizes[size], 'rounded-full animate-spin',
-      color === 'green' ? 'border-green/20 border-t-green' : 'border-white/20 border-t-white'
+      color === 'green' ? 'border-[rgba(201,168,76,0.2)] border-t-[#C9A84C]' : 'border-white/20 border-t-white'
     )} />
   )
 }
@@ -71,10 +71,13 @@ export function Spinner({ size = 'md', color = 'green' }) {
 // ── Loading Screen ────────────────────────────────────────────────
 export function LoadingScreen() {
   return (
-    <div className="min-h-screen bg-bg flex flex-col items-center justify-center gap-4">
-      <div className="text-4xl animate-bounce">🐾</div>
-      <Spinner size="lg" />
-      <p className="text-white/30 text-sm animate-pulse">Loading PawCare...</p>
+    <div className="min-h-screen flex flex-col items-center justify-center gap-5" style={{background:'#07101e'}}>
+      <div className="relative">
+        <div className="w-20 h-20 rounded-full animate-pulse" style={{background:'rgba(201,168,76,0.08)',border:'1px solid rgba(201,168,76,0.2)'}} />
+        <div className="absolute inset-0 flex items-center justify-center text-3xl">🐾</div>
+      </div>
+      <div className="w-6 h-6 rounded-full border-2 animate-spin" style={{borderColor:'rgba(201,168,76,0.2)',borderTopColor:'#C9A84C'}} />
+      <p className="text-sm animate-pulse" style={{color:'rgba(201,168,76,0.45)'}}>Loading Mingalar Pet Clinic...</p>
     </div>
   )
 }
@@ -82,8 +85,8 @@ export function LoadingScreen() {
 // ── Stat Card ─────────────────────────────────────────────────────
 export function StatCard({ icon, value, label, change, changeUp, color = 'green', delay = 0 }) {
   const colors = {
-    green: 'bg-green/10 text-green', amber: 'bg-amber/10 text-amber',
-    blue: 'bg-blue/10 text-blue', red: 'bg-red/10 text-red',
+    green: 'bg-[rgba(201,168,76,0.12)] text-[#C9A84C]', amber: 'bg-[rgba(232,200,112,0.1)] text-[#e8c870]',
+    blue: 'bg-[rgba(126,181,255,0.1)] text-[#7eb5ff]', red: 'bg-red/10 text-red',
     purple: 'bg-purple/10 text-purple', teal: 'bg-teal/10 text-teal',
   }
   return (
@@ -99,7 +102,7 @@ export function StatCard({ icon, value, label, change, changeUp, color = 'green'
       <div className="font-display text-3xl text-white leading-none mb-1">{value}</div>
       <div className="text-white/40 text-xs font-medium mb-1">{label}</div>
       {change && (
-        <div className={clsx('text-xs flex items-center gap-1', changeUp ? 'text-green' : 'text-red')}>
+        <div className={clsx('text-xs flex items-center gap-1', changeUp ? 'text-[#C9A84C]' : 'text-red')}>
           {changeUp ? '▲' : '▼'} {change}
         </div>
       )}
@@ -123,8 +126,8 @@ export function EmptyState({ icon = '🐾', title, desc, action }) {
 export function Avatar({ initials, color = 'green', size = 'md', emoji }) {
   const sizes = { sm: 'w-8 h-8 text-xs', md: 'w-10 h-10 text-sm', lg: 'w-14 h-14 text-lg', xl: 'w-20 h-20 text-2xl' }
   const colors = {
-    green: 'bg-green/10 text-green', amber: 'bg-amber/10 text-amber',
-    blue: 'bg-blue/10 text-blue', red: 'bg-red/10 text-red', purple: 'bg-purple/10 text-purple',
+    green: 'bg-[rgba(201,168,76,0.12)] text-[#C9A84C]', amber: 'bg-[rgba(232,200,112,0.1)] text-[#e8c870]',
+    blue: 'bg-[rgba(126,181,255,0.1)] text-[#7eb5ff]', red: 'bg-red/10 text-red', purple: 'bg-purple/10 text-purple',
   }
   return (
     <div className={clsx('rounded-full flex items-center justify-center font-bold flex-shrink-0', sizes[size], colors[color])}>
@@ -143,15 +146,17 @@ export function TableWrap({ children }) {
 }
 
 // ── Progress Bar ──────────────────────────────────────────────────
-export function ProgressBar({ value, color = 'bg-green', animated = true }) {
+export function ProgressBar({ value, color = 'gold', animated = true }) {
+  const colorMap = {
+    gold: 'linear-gradient(90deg,#C9A84C,#f0d080)',
+    amber: 'linear-gradient(90deg,#e8c870,#f0d080)',
+    red: 'linear-gradient(90deg,#ff6b6b,#ff9999)',
+    blue: 'linear-gradient(90deg,#7eb5ff,#aacfff)',
+  }
+  const bg = colorMap[color] || colorMap.gold
   return (
-    <div className="progress-bar">
-      <motion.div
-        className={clsx('progress-fill', color)}
-        initial={{ width: 0 }}
-        animate={{ width: `${value}%` }}
-        transition={{ duration: 1, ease: 'easeOut' }}
-      />
+    <div className="progress-bar w-full flex-1">
+      <div className="progress-fill" style={{width: `${Math.min(value,100)}%`, background: bg}} />
     </div>
   )
 }
@@ -171,7 +176,7 @@ export function SectionHeader({ title, subtitle, action }) {
 
 // ── Card ──────────────────────────────────────────────────────────
 export function Card({ children, className, hover = false, glow }) {
-  const glowColors = { green: 'hover:shadow-green-glow', amber: 'hover:shadow-[0_0_30px_rgba(255,184,77,0.3)]' }
+  const glowColors = { green: 'hover:shadow-green-glow', amber: 'hover:shadow-[0_0_30px_rgba(232,200,112,0.3)]' }
   return (
     <div className={clsx(
       'glass rounded-2xl p-5',

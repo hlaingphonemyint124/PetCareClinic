@@ -92,8 +92,8 @@ export default function App() {
         <Toaster
           position="bottom-right"
           toastOptions={{
-            style: { background: '#1a2035', border: '1px solid rgba(255,255,255,0.08)', color: '#e8eaf6', fontFamily: 'Outfit, sans-serif', fontSize: '14px', borderRadius: '12px' },
-            success: { iconTheme: { primary: '#00e5a0', secondary: '#000' } },
+            style: { background: '#0d1a2e', border: '1px solid rgba(201,168,76,0.2)', color: '#e8e4d9', fontFamily: 'Outfit, sans-serif', fontSize: '14px', borderRadius: '12px' },
+            success: { iconTheme: { primary: '#C9A84C', secondary: '#000' } },
             error: { iconTheme: { primary: '#ff4d6d', secondary: '#fff' } },
           }}
         />

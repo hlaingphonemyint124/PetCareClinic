@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useApp } from '../../lib/AppContext'
 import clsx from 'clsx'
+import { LOGO_URI } from '../../lib/logoData'
 
 const NAV_BY_ROLE = {
   owner: [
@@ -64,9 +65,9 @@ const NAV_BY_ROLE = {
 }
 
 const ROLE_CONFIG = {
-  owner:        { label: 'Pet Owner',     color: '#4da6ff', bg: 'rgba(77,166,255,0.1)',  border: 'rgba(77,166,255,0.2)'  },
-  vet:          { label: 'Veterinarian',  color: '#00e5a0', bg: 'rgba(0,229,160,0.1)',   border: 'rgba(0,229,160,0.2)'   },
-  receptionist: { label: 'Receptionist',  color: '#ffb84d', bg: 'rgba(255,184,77,0.1)',  border: 'rgba(255,184,77,0.2)'  },
+  owner:        { label: 'Pet Owner',     color: '#7eb5ff', bg: 'rgba(126,181,255,0.1)',  border: 'rgba(126,181,255,0.2)'  },
+  vet:          { label: 'Veterinarian',  color: '#C9A84C', bg: 'rgba(201,168,76,0.1)',   border: 'rgba(201,168,76,0.2)'   },
+  receptionist: { label: 'Receptionist',  color: '#e8c870', bg: 'rgba(232,200,112,0.1)',  border: 'rgba(232,200,112,0.2)'  },
   admin:        { label: 'Administrator', color: '#ff4d6d', bg: 'rgba(255,77,109,0.1)',  border: 'rgba(255,77,109,0.2)'  },
 }
 
@@ -80,7 +81,7 @@ export default function Sidebar() {
   return (
     <motion.aside
       className="w-[232px] h-screen sticky top-0 flex flex-col overflow-hidden flex-shrink-0"
-      style={{ background: 'rgba(8,11,18,0.97)', borderRight: '1px solid rgba(255,255,255,0.05)' }}
+      style={{ background: 'rgba(6,11,22,0.97)', borderRight: '1px solid rgba(201,168,76,0.1)' }}
       initial={{ x: -232, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
@@ -91,14 +92,11 @@ export default function Sidebar() {
 
       {/* Logo */}
       <div className="h-[64px] flex items-center px-5 gap-3 flex-shrink-0 relative z-10"
-        style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-        <div className="w-8 h-8 rounded-xl flex items-center justify-center text-base flex-shrink-0"
-          style={{ background: `${rc.color}18`, border: `1px solid ${rc.color}35`, boxShadow: `0 0 16px ${rc.color}20` }}>
-          🐾
-        </div>
+        style={{ borderBottom: '1px solid rgba(201,168,76,0.1)' }}>
+        <img src={LOGO_URI} alt="Mingalar" className="w-10 h-10 object-contain flex-shrink-0" style={{filter:"drop-shadow(0 0 6px rgba(201,168,76,0.3))"}} />
         <div>
-          <div className="font-display text-sm text-white leading-none">PawCare</div>
-          <div className="text-[10px] mt-0.5 font-medium" style={{ color: rc.color }}>{rc.label}</div>
+          <div className="font-display text-sm leading-none" style={{color:'#C9A84C'}}>Mingalar</div>
+          <div className="text-[10px] mt-0.5 font-medium" style={{ color: 'rgba(201,168,76,0.45)' }}>Pet Clinic</div>
         </div>
       </div>
 
@@ -109,7 +107,7 @@ export default function Sidebar() {
         {navSections.map((section) => (
           <div key={section.section} className="mb-4">
             <div className="px-3 py-1 text-[9px] font-bold tracking-[0.18em] uppercase mb-1"
-              style={{ color: 'rgba(255,255,255,0.14)' }}>
+              style={{ color: 'rgba(201,168,76,0.35)' }}>
               {section.section}
             </div>
             {section.items.map((item) => (
@@ -121,7 +119,7 @@ export default function Sidebar() {
                 {({ isActive }) => (
                   <div className={clsx(
                     'flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-[13px] font-medium mb-0.5 transition-all duration-200 cursor-pointer relative',
-                    isActive ? 'text-white' : 'text-white/30 hover:text-white/60 hover:bg-white/[0.03]'
+                    isActive ? 'text-white' : 'text-white/30 hover:text-white/60 hover:bg-[rgba(201,168,76,0.04)]'
                   )}>
                     {isActive && (
                       <motion.div className="absolute inset-0 rounded-xl" layoutId={`nav-active-${role}`}
@@ -137,8 +135,8 @@ export default function Sidebar() {
                     {item.badge && (
                       <span className="relative z-10 text-[10px] font-bold px-1.5 py-0.5 rounded-full"
                         style={{
-                          background: item.badgeColor==='red' ? 'rgba(255,77,109,0.2)' : item.badgeColor==='amber' ? 'rgba(255,184,77,0.2)' : 'rgba(0,229,160,0.15)',
-                          color: item.badgeColor==='red' ? '#ff4d6d' : item.badgeColor==='amber' ? '#ffb84d' : '#00e5a0',
+                          background: item.badgeColor==='red' ? 'rgba(255,77,109,0.2)' : item.badgeColor==='amber' ? 'rgba(232,200,112,0.2)' : 'rgba(201,168,76,0.15)',
+                          color: item.badgeColor==='red' ? '#ff4d6d' : item.badgeColor==='amber' ? '#e8c870' : '#C9A84C',
                         }}>
                         {item.badge}
                       </span>
@@ -153,10 +151,10 @@ export default function Sidebar() {
 
       {/* Bottom user card */}
       <div className="p-3 flex-shrink-0 relative z-10"
-        style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+        style={{ borderTop: '1px solid rgba(201,168,76,0.1)' }}>
         {/* Visit Website link */}
         <NavLink to="/"
-          className="flex items-center gap-2.5 px-3 py-2 mb-2 rounded-xl text-xs font-medium transition-all duration-200 hover:bg-white/[0.04] group"
+          className="flex items-center gap-2.5 px-3 py-2 mb-2 rounded-xl text-xs font-medium transition-all duration-200 hover:bg-[rgba(201,168,76,0.05)] group"
           style={{ color: 'rgba(255,255,255,0.3)' }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="flex-shrink-0 group-hover:-translate-x-0.5 transition-transform duration-200">
             <path d="M19 12H5M12 5l-7 7 7 7"/>
@@ -164,11 +162,11 @@ export default function Sidebar() {
           <span className="group-hover:text-white/60 transition-colors">Back to Website</span>
         </NavLink>
         <div className="flex items-center gap-1.5 px-2 mb-2.5">
-          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#00e5a0' }} />
+          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#C9A84C' }} />
           <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.18)' }}>Online</span>
         </div>
-        <div className="flex items-center gap-2.5 p-2.5 rounded-xl hover:bg-white/[0.03] transition-all duration-200 cursor-pointer"
-          style={{ border: '1px solid rgba(255,255,255,0.05)' }}>
+        <div className="flex items-center gap-2.5 p-2.5 rounded-xl hover:bg-[rgba(201,168,76,0.04)] transition-all duration-200 cursor-pointer"
+          style={{ border: '1px solid rgba(201,168,76,0.08)' }}>
           <div className="w-8 h-8 rounded-xl flex items-center justify-center text-xs font-bold flex-shrink-0"
             style={{ background: rc.bg, border: `1px solid ${rc.border}`, color: rc.color }}>
             {user?.avatar || user?.name?.[0] || '?'}
