@@ -5,7 +5,7 @@
  */
 export {
   HomePage, AboutPage, ServicesPage, VetsPage,
-  BlogPage, ContactPage, BookingPage,
+  BlogPage, BlogDetailPage, ContactPage, BookingPage,
   LoginPage, RegisterPage,
 } from './public'
 

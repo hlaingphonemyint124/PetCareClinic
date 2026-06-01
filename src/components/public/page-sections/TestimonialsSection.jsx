@@ -69,6 +69,8 @@ function MarqueeColumn({ direction }) {
         className="flex flex-col gap-3.5"
         style={{
           animation: `${animationName} ${duration} linear infinite`,
+          willChange: 'transform',
+          contain: 'layout style',
         }}
         onMouseEnter={e => (e.currentTarget.style.animationPlayState = 'paused')}
         onMouseLeave={e => (e.currentTarget.style.animationPlayState = 'running')}

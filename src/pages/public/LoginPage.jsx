@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useApp, TEST_ACCOUNTS } from '../../lib/AppContext'
 import toast from 'react-hot-toast'
@@ -11,6 +11,8 @@ export function LoginPage() {
   const [loading, setLoading] = useState(false)
   const { login, getDashboardPath } = useApp()
   const navigate = useNavigate()
+  const location = useLocation()
+  const redirectTo = new URLSearchParams(location.search).get('redirect') || null
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -19,7 +21,7 @@ export function LoginPage() {
     setLoading(false)
     if (result.success) {
       toast.success(`Welcome back, ${result.user.name?.split(' ')[0]}!`)
-      navigate(getDashboardPath(result.user.role))
+      navigate(redirectTo || getDashboardPath(result.user.role))
     } else {
       toast.error(result.error || 'Login failed.')
     }
@@ -31,7 +33,7 @@ export function LoginPage() {
     setLoading(false)
     if (result.success) {
       toast.success(`Logged in as ${result.user.name}`)
-      navigate(getDashboardPath(result.user.role))
+      navigate(redirectTo || getDashboardPath(result.user.role))
     }
   }
 

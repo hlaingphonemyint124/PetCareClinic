@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion'
+import { motion, useSpring, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Shield, Clock, Star, Activity, ChevronRight, Heart, Phone } from 'lucide-react'
 import { LOGO_URI } from '../../lib/logoData'
 /* ─── Pet Selector Data ──────────────────────────────────────────── */
@@ -284,9 +284,9 @@ function MobileFloatingCTA() {
 export default function Hero() {
   const [activePet, setActivePet] = useState(PET_TYPES[0])
   const containerRef = useRef()
-  const { scrollY } = useScroll()
-  const y1 = useTransform(scrollY, [0, 500], [0, -70])
-  const heroOpacity = useTransform(scrollY, [0, 350], [1, 0])
+  // Removed scroll parallax — caused mobile reflow/scroll-to-top
+  const y1 = { get: () => 0 }
+  const heroOpacity = 1
 
   const pet = activePet
 
@@ -301,7 +301,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-30 pointer-events-none" aria-hidden="true" />
 
         {/* Ambient orbs */}
-        <motion.div style={{ y: y1 }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div
             className="absolute w-[900px] h-[900px] -top-48 -right-48 rounded-full"
             style={{ background: `radial-gradient(circle, ${pet.bg.replace('0.08', '0.07')} 0%, transparent 60%)`, filter: 'blur(50px)', transition: 'background 0.6s ease' }}
@@ -310,7 +310,7 @@ export default function Hero() {
             className="absolute w-[700px] h-[700px] bottom-0 -left-32 rounded-full"
             style={{ background: 'radial-gradient(circle, rgba(180,138,255,0.04) 0%, transparent 60%)', filter: 'blur(40px)' }}
           />
-        </motion.div>
+        </div>
 
         <PawBackground />
 
@@ -318,7 +318,7 @@ export default function Hero() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 xl:gap-20 items-center">
 
             {/* ── LEFT ─────────────────────────────────────── */}
-            <motion.div style={{ opacity: heroOpacity }}>
+            <div>
 
               {/* Live badge */}
               <motion.div
@@ -435,7 +435,7 @@ export default function Hero() {
               >
                 <ReviewTicker />
               </motion.div>
-            </motion.div>
+            </div>
 
             {/* ── RIGHT ────────────────────────────────────── */}
             <motion.div

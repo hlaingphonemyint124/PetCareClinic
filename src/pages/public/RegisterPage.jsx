@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useApp } from '../../lib/AppContext'
 import toast from 'react-hot-toast'
@@ -10,6 +10,8 @@ export function RegisterPage() {
   const [loading, setLoading] = useState(false)
   const { register } = useApp()
   const navigate = useNavigate()
+  const location = useLocation()
+  const redirectTo = new URLSearchParams(location.search).get('redirect') || null
 
   const set = k => e => setForm(f => ({...f, [k]: e.target.value}))
 
@@ -22,7 +24,7 @@ export function RegisterPage() {
     setLoading(false)
     if (result.success) {
       toast.success('Account created! Welcome to Mingalar.')
-      navigate('/dashboard/owner')
+      navigate(redirectTo || '/dashboard/owner')
     } else {
       toast.error(result.error)
     }
