@@ -135,7 +135,7 @@ export function BlogDetailPage() {
             onClick={() => navigate(-1)}
             className="flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all duration-200"
             style={{
-              background: 'rgba(11,22,40,0.8)',
+              background: 'var(--bg-card)',
               border: '1px solid rgba(255,255,255,0.1)',
               color: 'rgba(232,228,217,0.6)',
               backdropFilter: 'blur(16px)',
@@ -176,7 +176,7 @@ export function BlogDetailPage() {
             </h1>
 
             {/* Meta row */}
-            <div className="flex flex-wrap items-center gap-4 text-xs" style={{ color: 'rgba(232,228,217,0.45)' }}>
+            <div className="flex flex-wrap items-center gap-4 text-xs" style={{ color: 'var(--text-muted)' }}>
               <span className="flex items-center gap-1.5"><User size={11} />{post.author}</span>
               <span className="flex items-center gap-1.5"><Calendar size={11} />{post.date}</span>
               <span className="flex items-center gap-1.5"><Clock size={11} />{post.readTime} read</span>
@@ -223,7 +223,7 @@ export function BlogDetailPage() {
               to={`/blog/${prevPost.id}`}
               className="group flex items-center gap-4 p-5 rounded-2xl transition-all duration-300"
               style={{
-                background: 'rgba(11,22,40,0.6)',
+                background: 'var(--bg-input)',
                 border: '1px solid rgba(255,255,255,0.06)',
               }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.25)' }}
@@ -242,7 +242,7 @@ export function BlogDetailPage() {
               to={`/blog/${nextPost.id}`}
               className="group flex items-center gap-4 p-5 rounded-2xl text-right justify-end transition-all duration-300"
               style={{
-                background: 'rgba(11,22,40,0.6)',
+                background: 'var(--bg-input)',
                 border: '1px solid rgba(255,255,255,0.06)',
               }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.25)' }}
@@ -276,7 +276,7 @@ export function BlogDetailPage() {
                   to={`/blog/${b.id}`}
                   className="group block rounded-2xl overflow-hidden transition-all duration-300"
                   style={{
-                    background: 'rgba(11,22,40,0.6)',
+                    background: 'var(--bg-input)',
                     border: '1px solid rgba(255,255,255,0.06)',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.25)'; e.currentTarget.style.transform = 'translateY(-3px)' }}
@@ -307,7 +307,7 @@ export function BlogDetailPage() {
                     <h4 className="text-white text-xs font-semibold leading-snug mb-2 group-hover:text-[#C9A84C] transition-colors line-clamp-2">
                       {b.title}
                     </h4>
-                    <p className="text-[10px]" style={{ color: 'rgba(232,228,217,0.3)' }}>
+                    <p className="text-[10px]" style={{ color: 'var(--text-faint)' }}>
                       {b.readTime} read
                     </p>
                   </div>

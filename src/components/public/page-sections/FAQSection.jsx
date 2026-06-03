@@ -201,7 +201,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
           {/* Main answer text */}
           <p
             className="text-sm leading-relaxed mb-4"
-            style={{ color: 'rgba(232,228,217,0.55)' }}
+            style={{ color: 'var(--text-muted)' }}
           >
             {faq.a}
           </p>
@@ -376,7 +376,7 @@ export function FAQSection() {
           className="mt-10 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6"
           style={{
             background: 'rgba(201,168,76,0.04)',
-            border: '1px solid rgba(201,168,76,0.14)',
+            border: '1px solid var(--border-gold)',
           }}
         >
           <div className="text-center md:text-left">
@@ -387,7 +387,7 @@ export function FAQSection() {
             </h3>
             <p
               className="text-sm"
-              style={{ color: 'rgba(232,228,217,0.45)' }}
+              style={{ color: 'var(--text-muted)' }}
             >
               Our team is available Mon–Sat 8 AM–8 PM, or 24/7 for emergencies.
             </p>

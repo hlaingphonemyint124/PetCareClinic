@@ -31,7 +31,7 @@ export function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-16" style={{background:'#07101e'}}>
+    <div className="min-h-screen flex items-center justify-center px-6 py-16" style={{background: 'var(--bg-1)'}}>
       <motion.div className="w-full max-w-md" initial={{opacity:0,y:24}} animate={{opacity:1,y:0}}>
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 mb-8 group">
@@ -73,7 +73,7 @@ export function RegisterPage() {
           </button>
         </form>
 
-        <p className="text-center text-sm mt-6" style={{color:'rgba(232,228,217,0.35)'}}>
+        <p className="text-center text-sm mt-6" style={{color: 'var(--text-faint)'}}>
           Already have an account?{' '}
           <Link to="/login" className="font-semibold hover:underline" style={{color:'#C9A84C'}}>Sign in</Link>
         </p>

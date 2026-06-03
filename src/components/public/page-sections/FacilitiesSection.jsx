@@ -150,7 +150,7 @@ export function FacilitiesSection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="rounded-[2rem] overflow-hidden"
-            style={{ border: '1px solid rgba(201,168,76,0.14)' }}
+            style={{ border: '1px solid var(--border-gold)' }}
           >
 
             {/* ── IMAGE STAGE ── */}
@@ -248,7 +248,7 @@ export function FacilitiesSection() {
             <div
               className="grid grid-cols-2 md:grid-cols-4"
               style={{
-                background: 'rgba(6,11,22,0.98)',
+                background: 'var(--bg-card)',
                 borderTop: '1px solid rgba(201,168,76,0.1)',
               }}
             >
@@ -312,7 +312,7 @@ export function FacilitiesSection() {
                     {/* Desc */}
                     <p
                       className="text-[11px] md:text-xs leading-relaxed line-clamp-2"
-                      style={{ color: 'rgba(232,228,217,0.35)' }}
+                      style={{ color: 'var(--text-faint)' }}
                     >
                       {f.desc}
                     </p>
@@ -345,7 +345,7 @@ export function FacilitiesSection() {
                 <span className="text-xl md:text-2xl flex-shrink-0">{icon}</span>
                 <div className="min-w-0">
                   <p className="text-white text-xs font-semibold truncate">{label}</p>
-                  <p className="text-[10px] truncate" style={{ color: 'rgba(232,228,217,0.3)' }}>{sub}</p>
+                  <p className="text-[10px] truncate" style={{ color: 'var(--text-faint)' }}>{sub}</p>
                 </div>
               </motion.div>
             ))}

@@ -11,7 +11,7 @@ export function BlogPage() {
   const filtered = cat === 'All' ? DEMO_BLOG : DEMO_BLOG.filter(b => b.category === cat)
 
   return (
-    <div className="min-h-screen bg-[#080f1c]">
+    <div className="min-h-screen bg-bg-1">
       <Navbar />
       <div className="pt-28 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
@@ -28,7 +28,7 @@ export function BlogPage() {
             {filtered.map((b,i)=>(
               <motion.div key={b.id} className="glass rounded-2xl overflow-hidden group cursor-pointer vet-card-3d"
                 initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.07}}>
-                <div className="h-44 bg-[#080f1c]-3 flex items-center justify-center text-6xl relative overflow-hidden">
+                <div className="h-44 bg-bg-1-3 flex items-center justify-center text-6xl relative overflow-hidden">
                   <span className="group-hover:scale-110 transition-transform duration-500">{b.emoji}</span>
                 </div>
                 <div className="p-5">

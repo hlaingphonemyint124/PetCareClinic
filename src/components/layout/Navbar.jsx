@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { ThemeToggle } from '../ui/ThemeToggle'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown, Calendar } from 'lucide-react'
 import { useApp } from '../../lib/AppContext'
@@ -80,6 +81,10 @@ export default function Navbar() {
                 className="text-white/50 hover:text-white text-sm transition-colors duration-200 px-3 py-2 rounded-xl hover:bg-white/[0.05]">
                 Dashboard
               </button>
+
+              {/* Theme toggle */}
+              <ThemeToggle />
+
               {/* User dropdown */}
               <div className="relative">
                 <button onClick={() => setDropOpen(!dropOpen)}
@@ -141,7 +146,14 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link to="/login" className="text-white/50 hover:text-white text-sm transition-colors duration-200 px-3 py-2">
+              {/* Theme toggle */}
+              <ThemeToggle />
+
+              <Link to="/login" className="text-sm font-medium transition-colors duration-200 px-3 py-2 rounded-xl hover:bg-white/5"
+                style={{ color: 'var(--text-muted)' }}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
+              >
                 Sign In
               </Link>
               {/* Primary CTA — always visible */}
@@ -202,9 +214,14 @@ export default function Navbar() {
                   className="w-full text-left px-3 py-3 rounded-xl text-sm text-red/60 hover:text-red hover:bg-red/5 transition-all">
                   🚪 Sign Out
                 </button>
+                <div className="flex items-center gap-2 px-3 py-2">
+                  <ThemeToggle />
+                  <span className="text-xs" style={{ color: 'var(--text-muted)' }}>Toggle theme</span>
+                </div>
               </div>
             ) : (
-              <div className="border-t border-[rgba(201,168,76,0.1)] pt-4 flex gap-3">
+              <div className="border-t border-[rgba(201,168,76,0.1)] pt-4 flex items-center gap-3">
+                <ThemeToggle />
                 <Link to="/login" className="btn-ghost flex-1 justify-center text-sm py-3" onClick={() => setMobileOpen(false)}>Sign In</Link>
                 <Link to="/booking" className="btn-primary flex-1 justify-center text-sm" onClick={() => setMobileOpen(false)}>Book Now</Link>
               </div>

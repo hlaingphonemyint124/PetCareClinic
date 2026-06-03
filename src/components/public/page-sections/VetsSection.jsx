@@ -351,7 +351,7 @@ export function VetsSection() {
                       >
                         {vet.rating}
                       </span>
-                      <span className="text-sm" style={{ color: 'rgba(232,228,217,0.35)' }}>
+                      <span className="text-sm" style={{ color: 'var(--text-faint)' }}>
                         ({vet.reviews} reviews)
                       </span>
                     </div>
@@ -509,7 +509,7 @@ export function VetsSection() {
                     {/* Counter */}
                     <span
                       className="text-xs font-mono ml-1"
-                      style={{ color: 'rgba(232,228,217,0.25)' }}
+                      style={{ color: 'var(--text-faint)' }}
                     >
                       {String(active + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
                     </span>

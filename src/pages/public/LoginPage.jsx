@@ -40,7 +40,7 @@ export function LoginPage() {
   const ROLE_COLORS = { admin: '#ff6b6b', vet: '#C9A84C', receptionist: '#e8c870', owner: '#7eb5ff' }
 
   return (
-    <div className="min-h-screen flex" style={{background:'#07101e'}}>
+    <div className="min-h-screen flex" style={{background: 'var(--bg-1)'}}>
       {/* Left panel — branding */}
       <div className="hidden lg:flex flex-col justify-between w-[420px] flex-shrink-0 p-12 relative overflow-hidden"
         style={{background:'linear-gradient(160deg,#0a1628 0%,#0c1e3a 100%)',borderRight:'1px solid rgba(201,168,76,0.12)'}}>
@@ -66,7 +66,7 @@ export function LoginPage() {
           <div className="font-display text-4xl text-white leading-tight mb-4">
             Caring for your<br/><span style={{color:'#C9A84C'}}>beloved pets</span>
           </div>
-          <p className="text-sm leading-relaxed" style={{color:'rgba(232,228,217,0.45)'}}>
+          <p className="text-sm leading-relaxed" style={{color: 'var(--text-muted)'}}>
             Yangon's premier veterinary clinic. Professional care for every paw, whisker, and feather.
           </p>
           {/* Stats */}
@@ -104,7 +104,7 @@ export function LoginPage() {
               {TEST_ACCOUNTS.map(acc => (
                 <button key={acc.id} onClick={() => quickLogin(acc)}
                   className="flex items-center gap-2 p-2.5 rounded-xl text-left transition-all duration-200 hover:scale-[1.02]"
-                  style={{background:'rgba(11,22,40,0.6)',border:`1px solid ${ROLE_COLORS[acc.role]}22`}}>
+                  style={{background: 'var(--bg-input)',border:`1px solid ${ROLE_COLORS[acc.role]}22`}}>
                   <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
                     style={{background:`${ROLE_COLORS[acc.role]}18`,color:ROLE_COLORS[acc.role]}}>
                     {acc.avatar}
@@ -120,7 +120,7 @@ export function LoginPage() {
 
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px flex-1" style={{background:'rgba(201,168,76,0.12)'}} />
-            <span className="text-xs" style={{color:'rgba(232,228,217,0.25)'}}>or sign in manually</span>
+            <span className="text-xs" style={{color: 'var(--text-faint)'}}>or sign in manually</span>
             <div className="h-px flex-1" style={{background:'rgba(201,168,76,0.12)'}} />
           </div>
 
@@ -140,7 +140,7 @@ export function LoginPage() {
             </button>
           </form>
 
-          <p className="text-center text-sm mt-6" style={{color:'rgba(232,228,217,0.35)'}}>
+          <p className="text-center text-sm mt-6" style={{color: 'var(--text-faint)'}}>
             New patient?{' '}
             <Link to="/register" className="font-semibold hover:underline" style={{color:'#C9A84C'}}>Create account</Link>
           </p>

@@ -23,7 +23,7 @@ function AuthGate() {
   const redirect = `?redirect=${encodeURIComponent(location.pathname)}`
 
   return (
-    <div className="min-h-screen" style={{ background: '#07101e' }}>
+    <div className="min-h-screen" style={{ background: 'var(--bg-1)' }}>
       <Navbar />
       <div className="pt-28 pb-24 px-4 md:px-6 flex items-center justify-center min-h-screen">
         <motion.div
@@ -59,7 +59,7 @@ function AuthGate() {
             <h1 className="font-display text-white text-3xl font-semibold mb-2">
               Sign In to Book
             </h1>
-            <p className="text-sm" style={{ color: 'rgba(232,228,217,0.45)' }}>
+            <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
               You need an account to book an appointment. It's free and takes under a minute.
             </p>
           </div>
@@ -68,7 +68,7 @@ function AuthGate() {
           <div
             className="rounded-2xl p-5 mb-6 space-y-3"
             style={{
-              background: 'rgba(11,22,40,0.7)',
+              background: 'var(--bg-card)',
               border: '1px solid rgba(201,168,76,0.1)',
             }}
           >
@@ -169,7 +169,7 @@ export function BookingPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: '#07101e' }}>
+    <div className="min-h-screen" style={{ background: 'var(--bg-1)' }}>
       <Navbar />
       <div className="pt-28 pb-24 px-6">
         <div className="max-w-3xl mx-auto">
@@ -226,7 +226,7 @@ export function BookingPage() {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.28 }}
               className="rounded-3xl p-6 md:p-8"
-              style={{ background: 'rgba(11,22,40,0.8)', border: '1px solid rgba(201,168,76,0.15)' }}
+              style={{ background: 'var(--bg-card)', border: '1px solid var(--border-gold)' }}
             >
 
               {/* Step 0: Choose vet */}
@@ -252,11 +252,11 @@ export function BookingPage() {
                         <div className="flex-1 min-w-0">
                           <div className="font-semibold text-white text-sm">{v.name}</div>
                           <div className="text-xs mt-0.5" style={{ color: 'rgba(201,168,76,0.7)' }}>{v.spec}</div>
-                          <div className="text-xs mt-0.5" style={{ color: 'rgba(232,228,217,0.35)' }}>{v.days}</div>
+                          <div className="text-xs mt-0.5" style={{ color: 'var(--text-faint)' }}>{v.days}</div>
                         </div>
                         <div className="text-right flex-shrink-0">
                           <div className="text-xs font-semibold" style={{ color: '#C9A84C' }}>⭐ {v.rating}</div>
-                          <div className="text-xs mt-0.5" style={{ color: 'rgba(232,228,217,0.3)' }}>{v.reviews} reviews</div>
+                          <div className="text-xs mt-0.5" style={{ color: 'var(--text-faint)' }}>{v.reviews} reviews</div>
                         </div>
                       </button>
                     ))}
@@ -353,7 +353,7 @@ export function BookingPage() {
                       <div key={label} className="flex items-center gap-3 px-4 py-3 rounded-xl"
                         style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.12)' }}>
                         <span>{icon}</span>
-                        <span className="text-sm flex-1" style={{ color: 'rgba(232,228,217,0.45)' }}>{label}</span>
+                        <span className="text-sm flex-1" style={{ color: 'var(--text-muted)' }}>{label}</span>
                         <span className="text-sm font-semibold text-white">{val}</span>
                       </div>
                     ))}

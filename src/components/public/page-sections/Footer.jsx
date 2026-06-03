@@ -4,7 +4,7 @@ import { ChevronRight, Phone, Mail, MapPin, Clock } from 'lucide-react'
 
 export function Footer() {
   return (
-    <footer className="bg-bg border-t border-[rgba(201,168,76,0.08)] pt-16 pb-8 px-6">
+    <footer className="bg-bg-1 border-t border-[rgba(201,168,76,0.08)] pt-16 pb-8 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           {/* Brand */}

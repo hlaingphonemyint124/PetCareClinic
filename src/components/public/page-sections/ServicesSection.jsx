@@ -104,7 +104,7 @@ function ServiceCard({ svc, status, currentIndex, totalCount }) {
             </div>
             <h3 className="font-display text-white text-2xl md:text-3xl leading-tight mb-1.5" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>{svc.name}</h3>
             <p className="text-sm mb-4 leading-relaxed" style={{ color: 'rgba(232,228,217,0.5)' }}>{svc.desc}</p>
-            <div className="rounded-xl p-4 mb-4" style={{ background: 'rgba(11,22,40,0.75)', border: '1px solid rgba(201,168,76,0.12)', backdropFilter: 'blur(12px)' }}>
+            <div className="rounded-xl p-4 mb-4" style={{ background: 'var(--bg-card)', border: '1px solid rgba(201,168,76,0.12)', backdropFilter: 'blur(12px)' }}>
               <p className="text-[9px] font-bold uppercase tracking-[0.2em] mb-2.5" style={{ color: 'rgba(201,168,76,0.5)' }}>What's Included</p>
               <ul className="space-y-1.5">
                 {includes.map((item, i) => (
@@ -118,7 +118,7 @@ function ServiceCard({ svc, status, currentIndex, totalCount }) {
             <div className="flex items-center justify-between">
               <div>
                 <span className="font-display text-2xl font-bold gradient-text">฿{svc.price.toLocaleString()}</span>
-                <span className="text-[11px] ml-2 px-2 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(232,228,217,0.35)' }}>{svc.duration}</span>
+                <span className="text-[11px] ml-2 px-2 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-faint)' }}>{svc.duration}</span>
               </div>
               <Link to="/booking" className="flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold transition-all duration-200 group" style={{ background: 'linear-gradient(135deg, #C9A84C, #e8c870)', color: '#0B1628', boxShadow: '0 4px 20px rgba(201,168,76,0.35)' }}>
                 Book Now <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
@@ -134,18 +134,18 @@ function ServiceCard({ svc, status, currentIndex, totalCount }) {
 function DesktopChipList({ services, currentIndex, onChipClick, onPause, onResume }) {
   return (
     <div className="hidden lg:flex w-[38%] flex-shrink-0 relative overflow-hidden"
-      style={{ background: 'rgba(8,16,32,0.97)', borderRight: '1px solid rgba(201,168,76,0.08)' }}
+      style={{ background: 'var(--bg-card)', borderRight: '1px solid rgba(201,168,76,0.08)' }}
       onMouseEnter={onPause} onMouseLeave={onResume}>
       <div className="absolute inset-x-0 top-0 h-24 z-20 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(8,16,32,1) 0%, transparent 100%)' }} />
       <div className="absolute inset-x-0 bottom-0 h-24 z-20 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(8,16,32,1) 0%, transparent 100%)' }} />
       <div className="absolute left-8 top-1/3 bottom-1/3 w-px z-10" style={{ background: 'linear-gradient(to bottom, transparent, rgba(201,168,76,0.4), transparent)' }} />
       <div className="absolute bottom-8 left-8 right-8 z-20 pointer-events-none">
-        <div className="rounded-2xl p-4" style={{ background: 'rgba(11,22,40,0.8)', border: '1px solid rgba(201,168,76,0.1)', backdropFilter: 'blur(16px)' }}>
+        <div className="rounded-2xl p-4" style={{ background: 'var(--bg-card)', border: '1px solid rgba(201,168,76,0.1)', backdropFilter: 'blur(16px)' }}>
           <div className="grid grid-cols-3 gap-3 text-center">
             {[{ val: '11', label: 'Services' }, { val: '4.9', label: 'Avg Rating' }, { val: '2010', label: 'Est.' }].map(({ val, label }) => (
               <div key={label}>
                 <p className="font-display text-lg font-bold leading-none mb-0.5 gradient-text">{val}</p>
-                <p className="text-[9px] uppercase tracking-widest" style={{ color: 'rgba(232,228,217,0.3)' }}>{label}</p>
+                <p className="text-[9px] uppercase tracking-widest" style={{ color: 'var(--text-faint)' }}>{label}</p>
               </div>
             ))}
           </div>
@@ -180,7 +180,7 @@ function MobileChipRow({ services, currentIndex, onChipClick }) {
   // ✅ FIX: No scrollIntoView — was causing page scroll-to-top
   return (
     <div className="flex lg:hidden flex-col w-full relative"
-      style={{ background: 'rgba(8,16,32,0.97)', borderBottom: '1px solid rgba(201,168,76,0.08)' }}>
+      style={{ background: 'var(--bg-card)', borderBottom: '1px solid rgba(201,168,76,0.08)' }}>
       <div className="absolute inset-x-0 top-0 h-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(8,16,32,1), transparent)' }} />
       <div className="absolute inset-x-0 bottom-0 h-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(8,16,32,1), transparent)' }} />
       <div className="overflow-y-auto py-3 px-4" style={{ maxHeight: 220, scrollbarWidth: 'none' }}>

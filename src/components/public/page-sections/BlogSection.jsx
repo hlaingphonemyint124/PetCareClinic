@@ -57,7 +57,7 @@ function BlogSlider({ posts }) {
       className="relative overflow-hidden rounded-[2rem] cursor-pointer group"
       style={{
         height: 'clamp(380px, 55vw, 580px)',
-        border: '1px solid rgba(201,168,76,0.14)',
+        border: '1px solid var(--border-gold)',
       }}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
@@ -163,7 +163,7 @@ function BlogSlider({ posts }) {
             <div className="flex flex-wrap items-center gap-3 mb-5">
               <span
                 className="flex items-center gap-1.5 text-xs"
-                style={{ color: 'rgba(232,228,217,0.45)' }}
+                style={{ color: 'var(--text-muted)' }}
               >
                 <User size={11} />
                 {post.author}
@@ -171,7 +171,7 @@ function BlogSlider({ posts }) {
               <span style={{ color: 'rgba(255,255,255,0.15)' }}>·</span>
               <span
                 className="text-xs"
-                style={{ color: 'rgba(232,228,217,0.35)' }}
+                style={{ color: 'var(--text-faint)' }}
               >
                 {post.date}
               </span>
@@ -196,7 +196,7 @@ function BlogSlider({ posts }) {
               <div
                 className="flex items-center gap-1 rounded-full p-1"
                 style={{
-                  background: 'rgba(11,22,40,0.85)',
+                  background: 'var(--bg-card)',
                   border: '1px solid rgba(255,255,255,0.08)',
                   backdropFilter: 'blur(16px)',
                 }}
@@ -215,7 +215,7 @@ function BlogSlider({ posts }) {
                 </button>
                 <span
                   className="min-w-[32px] text-center text-[11px] font-mono"
-                  style={{ color: 'rgba(232,228,217,0.35)' }}
+                  style={{ color: 'var(--text-faint)' }}
                 >
                   {activeIdx + 1} / {count}
                 </span>
