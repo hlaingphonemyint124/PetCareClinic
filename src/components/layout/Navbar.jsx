@@ -100,7 +100,7 @@ export default function Navbar() {
                   {dropOpen && (
                     <motion.div
                       className="absolute right-0 top-full mt-2 w-52 rounded-2xl overflow-hidden z-50"
-                      style={{ background: 'rgba(7,12,22,0.98)', border: '1px solid rgba(201,168,76,0.15)', boxShadow: '0 24px 64px rgba(0,0,0,0.6)' }}
+                      style={{ background: 'var(--navbar-bg)', border: '1px solid var(--navbar-border)', boxShadow: 'var(--shadow-card)' }}
                       initial={{ opacity: 0, scale: 0.95, y: -8 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, y: -8 }}
@@ -182,7 +182,7 @@ export default function Navbar() {
         {mobileOpen && (
           <motion.div
             className="md:hidden border-t border-[rgba(201,168,76,0.1)] px-5 py-4"
-            style={{ background: 'rgba(8,11,18,0.98)', backdropFilter: 'blur(28px)' }}
+            style={{ background: 'var(--navbar-bg)', backdropFilter: 'blur(28px)' }}
             initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}>
             <div className="space-y-0.5 mb-4">
               {NAV_LINKS.map(l => {

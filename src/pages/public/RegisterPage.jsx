@@ -42,29 +42,29 @@ export function RegisterPage() {
           </div>
         </Link>
 
-        <h1 className="font-display text-3xl text-white mb-2">Create Account</h1>
-        <p className="text-sm mb-8" style={{color:'rgba(232,228,217,0.4)'}}>Join Yangon's premier pet care community</p>
+        <h1 className="font-display text-3xl text-token-primary mb-2">Create Account</h1>
+        <p className="text-sm mb-8" style={{color: 'var(--text-muted)'}}>Join Yangon's premier pet care community</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color:'rgba(232,228,217,0.5)'}}>Full Name</label>
+            <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color: 'var(--text-muted)'}}>Full Name</label>
             <input className="form-input" placeholder="Ko Kyaw Zin" value={form.name} onChange={set('name')} required />
           </div>
           <div>
-            <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color:'rgba(232,228,217,0.5)'}}>Email</label>
+            <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color: 'var(--text-muted)'}}>Email</label>
             <input className="form-input" type="email" placeholder="you@example.com" value={form.email} onChange={set('email')} required />
           </div>
           <div>
-            <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color:'rgba(232,228,217,0.5)'}}>Phone (Myanmar)</label>
+            <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color: 'var(--text-muted)'}}>Phone (Myanmar)</label>
             <input className="form-input" placeholder="09-xxx-xxxxxx" value={form.phone} onChange={set('phone')} />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color:'rgba(232,228,217,0.5)'}}>Password</label>
+              <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color: 'var(--text-muted)'}}>Password</label>
               <input className="form-input" type="password" placeholder="min. 8 chars" value={form.password} onChange={set('password')} required />
             </div>
             <div>
-              <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color:'rgba(232,228,217,0.5)'}}>Confirm</label>
+              <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color: 'var(--text-muted)'}}>Confirm</label>
               <input className="form-input" type="password" placeholder="repeat" value={form.confirm} onChange={set('confirm')} required />
             </div>
           </div>

@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 export function DashLayout({ title, children }) {
   const { user } = useApp()
   return (
-    <div className="flex h-screen overflow-hidden" style={{background:'#07101e'}}>
+    <div className="flex h-screen overflow-hidden" style={{background:'var(--bg-1)'}}>
       <Sidebar />
       <div className="flex-1 flex flex-col overflow-hidden min-w-0">
         <header className="h-[64px] flex items-center justify-between px-6 flex-shrink-0"
@@ -33,7 +33,7 @@ export function DashLayout({ title, children }) {
           </div>
         </header>
         <main className="flex-1 overflow-y-auto p-6"
-          style={{ background:'radial-gradient(ellipse at top,rgba(201,168,76,0.025) 0%,transparent 50%),#07101e' }}>
+          style={{ background:'radial-gradient(ellipse at top,rgba(201,168,76,0.025) 0%,transparent 50%),var(--bg-1)' }}>
           {children}
         </main>
       </div>

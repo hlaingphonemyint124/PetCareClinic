@@ -73,12 +73,14 @@ function ServiceCard({ svc, status, currentIndex, totalCount }) {
       transition={{ type: 'spring', stiffness: 260, damping: 28, mass: 0.9 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="absolute inset-0 rounded-[2rem] overflow-hidden origin-center"
-      style={{ border: '1.5px solid rgba(201,168,76,0.18)', background: '#07111e' }}
+      className="absolute inset-0 rounded-[2rem] overflow-hidden origin-center service-photo-card"
+      style={{ border: '1.5px solid var(--border-gold)', background: 'var(--card-inner-bg)' }}
     >
       <motion.img src={SERVICE_IMAGES[svc.id]} alt={svc.name} className="absolute inset-0 w-full h-full object-cover"
         style={{ filter: isActive ? 'grayscale(0) brightness(0.82)' : 'grayscale(1) brightness(0.45) blur(3px)', transition: 'filter 0.6s ease' }} />
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,10,20,0.98) 0%, rgba(5,10,20,0.55) 45%, rgba(5,10,20,0.1) 100%)' }} />
+      {/* Gradient overlay — theme-aware via CSS class */}
+      <div className="absolute inset-0 service-gradient-overlay"
+        style={{ background: 'linear-gradient(to top, rgba(5,10,20,0.98) 0%, rgba(5,10,20,0.55) 45%, rgba(5,10,20,0.1) 100%)' }} />
       <div className="absolute top-0 left-0 w-40 h-40 pointer-events-none" style={{ background: 'radial-gradient(circle at 0% 0%, rgba(201,168,76,0.18), transparent 70%)' }} />
       <AnimatePresence>
         {isActive && (
@@ -102,15 +104,15 @@ function ServiceCard({ svc, status, currentIndex, totalCount }) {
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-[0.15em] mb-3" style={{ background: 'rgba(201,168,76,0.12)', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C' }}>
               {svc.icon}&nbsp;{svc.category}
             </div>
-            <h3 className="font-display text-white text-2xl md:text-3xl leading-tight mb-1.5" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>{svc.name}</h3>
-            <p className="text-sm mb-4 leading-relaxed" style={{ color: 'rgba(232,228,217,0.5)' }}>{svc.desc}</p>
-            <div className="rounded-xl p-4 mb-4" style={{ background: 'var(--bg-card)', border: '1px solid rgba(201,168,76,0.12)', backdropFilter: 'blur(12px)' }}>
-              <p className="text-[9px] font-bold uppercase tracking-[0.2em] mb-2.5" style={{ color: 'rgba(201,168,76,0.5)' }}>What's Included</p>
+            <h3 className="font-display text-2xl md:text-3xl leading-tight mb-1.5 photo-card-title" style={{ color: '#fff', textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>{svc.name}</h3>
+            <p className="text-sm mb-4 leading-relaxed photo-card-meta" style={{ color: 'rgba(232,228,217,0.5)' }}>{svc.desc}</p>
+            <div className="rounded-xl p-4 mb-4 whats-included-card" style={{ background: 'var(--bg-card)', border: '1px solid rgba(201,168,76,0.12)', backdropFilter: 'blur(12px)' }}>
+              <p className="text-[9px] font-bold uppercase tracking-[0.2em] mb-2.5" style={{ color: 'var(--info-label-color)' }}>What's Included</p>
               <ul className="space-y-1.5">
                 {includes.map((item, i) => (
                   <motion.li key={item} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05 * i }} className="flex items-center gap-2">
                     <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: '#C9A84C' }} />
-                    <span className="text-[11px] leading-snug" style={{ color: 'rgba(232,228,217,0.6)' }}>{item}</span>
+                    <span className="text-[11px] leading-snug included-item-text" style={{ color: 'rgba(232,228,217,0.6)' }}>{item}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -133,14 +135,14 @@ function ServiceCard({ svc, status, currentIndex, totalCount }) {
 
 function DesktopChipList({ services, currentIndex, onChipClick, onPause, onResume }) {
   return (
-    <div className="hidden lg:flex w-[38%] flex-shrink-0 relative overflow-hidden"
-      style={{ background: 'var(--bg-card)', borderRight: '1px solid rgba(201,168,76,0.08)' }}
+    <div className="hidden lg:flex w-[38%] flex-shrink-0 relative overflow-hidden services-chip-panel"
+      style={{ background: 'var(--bg-card)', borderRight: '1px solid var(--border-gold)' }}
       onMouseEnter={onPause} onMouseLeave={onResume}>
-      <div className="absolute inset-x-0 top-0 h-24 z-20 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(8,16,32,1) 0%, transparent 100%)' }} />
-      <div className="absolute inset-x-0 bottom-0 h-24 z-20 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(8,16,32,1) 0%, transparent 100%)' }} />
+      <div className="absolute inset-x-0 top-0 h-24 z-20 pointer-events-none" style={{ background: 'linear-gradient(to bottom, var(--dark-surface) 0%, transparent 100%)' }} />
+      <div className="absolute inset-x-0 bottom-0 h-24 z-20 pointer-events-none" style={{ background: 'linear-gradient(to top, var(--dark-surface) 0%, transparent 100%)' }} />
       <div className="absolute left-8 top-1/3 bottom-1/3 w-px z-10" style={{ background: 'linear-gradient(to bottom, transparent, rgba(201,168,76,0.4), transparent)' }} />
       <div className="absolute bottom-8 left-8 right-8 z-20 pointer-events-none">
-        <div className="rounded-2xl p-4" style={{ background: 'var(--bg-card)', border: '1px solid rgba(201,168,76,0.1)', backdropFilter: 'blur(16px)' }}>
+        <div className="rounded-2xl p-4 services-stat-bar" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-gold)', backdropFilter: 'blur(16px)' }}>
           <div className="grid grid-cols-3 gap-3 text-center">
             {[{ val: '11', label: 'Services' }, { val: '4.9', label: 'Avg Rating' }, { val: '2010', label: 'Est.' }].map(({ val, label }) => (
               <div key={label}>
@@ -163,7 +165,12 @@ function DesktopChipList({ services, currentIndex, onChipClick, onPause, onResum
               transition={{ type: 'spring', stiffness: 85, damping: 20 }}>
               <button type="button" onClick={() => onChipClick(index)}
                 className="w-full flex items-center gap-3 py-3 px-5 rounded-full text-left transition-all duration-500"
-                style={{ border: isActive ? '1px solid rgba(201,168,76,0.65)' : '1px solid rgba(255,255,255,0.07)', background: isActive ? 'rgba(201,168,76,0.1)' : 'transparent', color: isActive ? '#C9A84C' : 'rgba(232,228,217,0.4)', boxShadow: isActive ? '0 0 24px rgba(201,168,76,0.1)' : 'none' }}>
+                style={{
+                  border: isActive ? '1px solid rgba(201,168,76,0.65)' : '1px solid var(--chip-inactive-border)',
+                  background: isActive ? 'rgba(201,168,76,0.1)' : 'var(--chip-inactive-bg)',
+                  color: isActive ? 'var(--gold)' : 'var(--chip-inactive-color)',
+                  boxShadow: isActive ? '0 0 24px rgba(201,168,76,0.1)' : 'none'
+                }}>
                 <span className="text-base leading-none flex-shrink-0">{svc.icon}</span>
                 <span className="text-xs font-medium tracking-wide uppercase flex-1 truncate" style={{ letterSpacing: '0.07em' }}>{svc.name}</span>
                 {isActive && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0" style={{ background: 'rgba(201,168,76,0.18)', color: '#e8c870' }}>฿{svc.price.toLocaleString()}</span>}
@@ -177,12 +184,11 @@ function DesktopChipList({ services, currentIndex, onChipClick, onPause, onResum
 }
 
 function MobileChipRow({ services, currentIndex, onChipClick }) {
-  // ✅ FIX: No scrollIntoView — was causing page scroll-to-top
   return (
-    <div className="flex lg:hidden flex-col w-full relative"
-      style={{ background: 'var(--bg-card)', borderBottom: '1px solid rgba(201,168,76,0.08)' }}>
-      <div className="absolute inset-x-0 top-0 h-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(8,16,32,1), transparent)' }} />
-      <div className="absolute inset-x-0 bottom-0 h-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(8,16,32,1), transparent)' }} />
+    <div className="flex lg:hidden flex-col w-full relative services-chip-panel"
+      style={{ background: 'var(--bg-card)', borderBottom: '1px solid var(--border-gold)' }}>
+      <div className="absolute inset-x-0 top-0 h-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to bottom, var(--dark-surface), transparent)' }} />
+      <div className="absolute inset-x-0 bottom-0 h-10 z-10 pointer-events-none" style={{ background: 'linear-gradient(to top, var(--dark-surface), transparent)' }} />
       <div className="overflow-y-auto py-3 px-4" style={{ maxHeight: 220, scrollbarWidth: 'none' }}>
         {services.map((svc, index) => {
           const isActive = index === currentIndex
@@ -190,7 +196,11 @@ function MobileChipRow({ services, currentIndex, onChipClick }) {
             <div key={svc.id} className="py-1">
               <button type="button" onClick={() => onChipClick(index)}
                 className="w-full flex items-center gap-3 px-4 py-3 rounded-full text-left transition-all duration-300"
-                style={{ border: isActive ? '1px solid rgba(201,168,76,0.65)' : '1px solid rgba(255,255,255,0.07)', background: isActive ? 'rgba(201,168,76,0.1)' : 'transparent', color: isActive ? '#C9A84C' : 'rgba(232,228,217,0.4)' }}>
+                style={{
+                  border: isActive ? '1px solid rgba(201,168,76,0.65)' : '1px solid var(--chip-inactive-border)',
+                  background: isActive ? 'rgba(201,168,76,0.1)' : 'var(--chip-inactive-bg)',
+                  color: isActive ? 'var(--gold)' : 'var(--chip-inactive-color)'
+                }}>
                 <span className="text-base leading-none flex-shrink-0">{svc.icon}</span>
                 <span className="text-xs font-medium uppercase flex-1 truncate" style={{ letterSpacing: '0.07em' }}>{svc.name}</span>
                 {isActive && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0" style={{ background: 'rgba(201,168,76,0.18)', color: '#e8c870' }}>฿{svc.price.toLocaleString()}</span>}
@@ -213,7 +223,6 @@ export function ServicesSection() {
   const count        = SERVICES.length
   const currentIndex = ((step % count) + count) % count
 
-  // ✅ FIX: setTimeout instead of setInterval — no double state updates
   const scheduleNext = useCallback(() => {
     clearTimeout(timerRef.current)
     timerRef.current = setTimeout(() => setStep(p => p + 1), AUTO_PLAY_MS)
@@ -231,7 +240,6 @@ export function ServicesSection() {
     if (diff > 0) setStep(s => s + diff)
   }, [currentIndex, count])
 
-  // ✅ FIX: Keyboard only fires when NOT focused on an input, no e.preventDefault on arrows
   useEffect(() => {
     const onKey = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
@@ -242,7 +250,6 @@ export function ServicesSection() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  // ✅ FIX: Touch tracks both X and Y — only fires swipe if clearly horizontal
   const touchRef = useRef(null)
   const handleTouchStart = (e) => { touchRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY } }
   const handleTouchEnd   = (e) => {
@@ -275,12 +282,12 @@ export function ServicesSection() {
           <SectionHeader eyebrow="Trusted care since 2010" title="Complete Pet" highlight="Healthcare" subtitle="Comprehensive veterinary services with transparent pricing and genuine compassion." />
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border flex flex-col lg:flex-row"
-          style={{ borderColor: 'rgba(201,168,76,0.12)', background: 'rgba(7,12,22,0.85)', minHeight: 580 }}>
+          className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border flex flex-col lg:flex-row services-main-frame"
+          style={{ borderColor: 'var(--border-gold)', background: 'var(--dark-card-bg)', minHeight: 580 }}>
           <MobileChipRow services={SERVICES} currentIndex={currentIndex} onChipClick={handleChipClick} />
           <DesktopChipList services={SERVICES} currentIndex={currentIndex} onChipClick={handleChipClick} onPause={() => setIsPaused(true)} onResume={() => setIsPaused(false)} />
           <div className="flex-1 relative flex items-center justify-center overflow-hidden"
-            style={{ minHeight: 480, padding: '2rem 1.5rem', background: 'rgba(5,9,18,0.5)' }}
+            style={{ minHeight: 480, padding: '2rem 1.5rem', background: 'var(--dark-overlay-mid)' }}
             onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}
             onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             <div className="relative w-full" style={{ maxWidth: 360, aspectRatio: '9/14' }}>

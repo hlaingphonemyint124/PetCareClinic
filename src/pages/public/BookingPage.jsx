@@ -56,7 +56,7 @@ function AuthGate() {
 
           {/* Heading */}
           <div className="text-center mb-8">
-            <h1 className="font-display text-white text-3xl font-semibold mb-2">
+            <h1 className="font-display text-token-primary text-3xl font-semibold mb-2">
               Sign In to Book
             </h1>
             <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
@@ -91,7 +91,7 @@ function AuthGate() {
                 >
                   {icon}
                 </div>
-                <span className="text-sm" style={{ color: 'rgba(232,228,217,0.65)' }}>{text}</span>
+                <span className="text-sm" style={{ color: 'var(--text-primary)' }}>{text}</span>
               </motion.div>
             ))}
           </div>
@@ -118,8 +118,8 @@ function AuthGate() {
               className="flex items-center justify-center gap-2.5 w-full py-4 rounded-2xl text-sm font-semibold transition-all duration-200"
               style={{
                 background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(255,255,255,0.1)',
-                color: 'rgba(232,228,217,0.75)',
+                border: '1px solid var(--border-subtle)',
+                color: 'var(--text-primary)',
               }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.3)'; e.currentTarget.style.color = '#C9A84C' }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'rgba(232,228,217,0.75)' }}
@@ -130,7 +130,7 @@ function AuthGate() {
           </div>
 
           {/* Back link */}
-          <p className="text-center mt-6 text-xs" style={{ color: 'rgba(232,228,217,0.28)' }}>
+          <p className="text-center mt-6 text-xs" style={{ color: 'var(--text-muted)' }}>
             <Link to="/" className="hover:text-[#C9A84C] transition-colors">← Back to homepage</Link>
           </p>
         </motion.div>
@@ -188,8 +188,8 @@ export function BookingPage() {
               <div className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
               Booking as {user.name?.split(' ')[0]}
             </div>
-            <h1 className="font-display text-4xl text-white mb-2">Book an Appointment</h1>
-            <p className="text-sm" style={{ color: 'rgba(232,228,217,0.4)' }}>
+            <h1 className="font-display text-4xl text-token-primary mb-2">Book an Appointment</h1>
+            <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
               Select a doctor, service, and preferred time
             </p>
           </motion.div>
@@ -232,7 +232,7 @@ export function BookingPage() {
               {/* Step 0: Choose vet */}
               {step === 0 && (
                 <div>
-                  <h2 className="font-display text-2xl text-white mb-6">Choose a Veterinarian</h2>
+                  <h2 className="font-display text-2xl text-token-primary mb-6">Choose a Veterinarian</h2>
                   <div className="grid gap-3">
                     {DEMO_VETS.map(v => (
                       <button
@@ -250,7 +250,7 @@ export function BookingPage() {
                           {v.initials || v.name.split(' ').slice(1, 3).map(n => n[0]).join('')}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="font-semibold text-white text-sm">{v.name}</div>
+                          <div className="font-semibold text-token-primary text-sm">{v.name}</div>
                           <div className="text-xs mt-0.5" style={{ color: 'rgba(201,168,76,0.7)' }}>{v.spec}</div>
                           <div className="text-xs mt-0.5" style={{ color: 'var(--text-faint)' }}>{v.days}</div>
                         </div>
@@ -267,7 +267,7 @@ export function BookingPage() {
               {/* Step 1: Choose service */}
               {step === 1 && (
                 <div>
-                  <h2 className="font-display text-2xl text-white mb-6">Select Service</h2>
+                  <h2 className="font-display text-2xl text-token-primary mb-6">Select Service</h2>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {DEMO_SERVICES.filter(s => ['consultation','vaccination','diagnostics','dental','grooming'].includes(s.category)).map(s => (
                       <button
@@ -282,8 +282,8 @@ export function BookingPage() {
                       >
                         <span className="text-2xl">{s.icon}</span>
                         <div className="flex-1 min-w-0">
-                          <div className="font-semibold text-white text-sm">{s.name}</div>
-                          <div className="text-xs mt-0.5" style={{ color: 'rgba(232,228,217,0.4)' }}>{s.duration}</div>
+                          <div className="font-semibold text-token-primary text-sm">{s.name}</div>
+                          <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>{s.duration}</div>
                         </div>
                         <div className="text-sm font-semibold flex-shrink-0" style={{ color: '#C9A84C' }}>
                           {(s.price / 1000).toFixed(0)}K
@@ -297,7 +297,7 @@ export function BookingPage() {
               {/* Step 2: Pick date/time */}
               {step === 2 && (
                 <div>
-                  <h2 className="font-display text-2xl text-white mb-6">Pick Date & Time</h2>
+                  <h2 className="font-display text-2xl text-token-primary mb-6">Pick Date & Time</h2>
                   <div className="grid grid-cols-7 gap-1.5 mb-6">
                     {DATES.map(d => (
                       <button
@@ -340,7 +340,7 @@ export function BookingPage() {
               {/* Step 3: Confirm */}
               {step === 3 && (
                 <div>
-                  <h2 className="font-display text-2xl text-white mb-6">Confirm Appointment</h2>
+                  <h2 className="font-display text-2xl text-token-primary mb-6">Confirm Appointment</h2>
                   <div className="space-y-3 mb-6">
                     {[
                       ['🩺', 'Veterinarian', vet?.name],
@@ -354,16 +354,16 @@ export function BookingPage() {
                         style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.12)' }}>
                         <span>{icon}</span>
                         <span className="text-sm flex-1" style={{ color: 'var(--text-muted)' }}>{label}</span>
-                        <span className="text-sm font-semibold text-white">{val}</span>
+                        <span className="text-sm font-semibold text-token-primary">{val}</span>
                       </div>
                     ))}
                   </div>
                   <div className="mb-4">
-                    <label className="text-xs font-semibold mb-1.5 block" style={{ color: 'rgba(232,228,217,0.5)' }}>Pet Name</label>
+                    <label className="text-xs font-semibold mb-1.5 block" style={{ color: 'var(--text-muted)' }}>Pet Name</label>
                     <input className="form-input" placeholder="Your pet's name" value={pet} onChange={e => setPet(e.target.value)} />
                   </div>
                   <div>
-                    <label className="text-xs font-semibold mb-1.5 block" style={{ color: 'rgba(232,228,217,0.5)' }}>Notes (optional)</label>
+                    <label className="text-xs font-semibold mb-1.5 block" style={{ color: 'var(--text-muted)' }}>Notes (optional)</label>
                     <textarea className="form-textarea" rows={3} placeholder="Any symptoms or concerns…" value={note} onChange={e => setNote(e.target.value)} />
                   </div>
                 </div>

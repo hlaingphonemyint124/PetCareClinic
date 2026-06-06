@@ -155,7 +155,7 @@ export default function Sidebar() {
         {/* Visit Website link */}
         <NavLink to="/"
           className="flex items-center gap-2.5 px-3 py-2 mb-2 rounded-xl text-xs font-medium transition-all duration-200 hover:bg-[rgba(201,168,76,0.05)] group"
-          style={{ color: 'rgba(255,255,255,0.3)' }}>
+          style={{ color: 'var(--text-muted)' }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="flex-shrink-0 group-hover:-translate-x-0.5 transition-transform duration-200">
             <path d="M19 12H5M12 5l-7 7 7 7"/>
           </svg>

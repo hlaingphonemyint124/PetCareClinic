@@ -12,7 +12,7 @@ export function DashLayout({ title, children }) {
       <div className="flex-1 flex flex-col overflow-hidden min-w-0">
         <header
           className="h-[60px] border-b border-white/[0.05] flex items-center justify-between px-6 flex-shrink-0"
-          style={{ background: 'rgba(8,11,18,0.95)', backdropFilter: 'blur(20px)' }}>
+          style={{ background:'var(--glass-strong-bg)', backdropFilter: 'blur(20px)' }}>
           <h1 className="font-semibold text-white text-sm">{title}</h1>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 glass rounded-xl px-3 py-1.5 text-xs text-white/30 border border-white/[0.05]">

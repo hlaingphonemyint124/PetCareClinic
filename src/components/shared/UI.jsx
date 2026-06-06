@@ -71,7 +71,7 @@ export function Spinner({ size = 'md', color = 'green' }) {
 // ── Loading Screen ────────────────────────────────────────────────
 export function LoadingScreen() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-5" style={{background:'#07101e'}}>
+    <div className="min-h-screen flex flex-col items-center justify-center gap-5" style={{background:'var(--bg-1)'}}>
       <div className="relative">
         <div className="w-20 h-20 rounded-full animate-pulse" style={{background:'rgba(201,168,76,0.08)',border:'1px solid rgba(201,168,76,0.2)'}} />
         <div className="absolute inset-0 flex items-center justify-center text-3xl">🐾</div>

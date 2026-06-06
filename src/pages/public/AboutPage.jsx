@@ -21,7 +21,7 @@ const MILESTONES = [
 
 export function AboutPage() {
   return (
-    <div className="min-h-screen" style={{background:'#07101e'}}>
+    <div className="min-h-screen" style={{background:'var(--bg-1)'}}>
       <Navbar />
       <div className="pt-28 pb-24 px-6">
         <div className="max-w-6xl mx-auto">
@@ -29,10 +29,10 @@ export function AboutPage() {
           {/* Hero */}
           <motion.div className="text-center mb-20" initial={{opacity:0,y:30}} animate={{opacity:1,y:0}}>
             <div className="text-xs font-bold tracking-[0.2em] uppercase mb-4" style={{color:'#C9A84C'}}>Our Story</div>
-            <h1 className="font-display text-5xl md:text-6xl text-white mb-6">
+            <h1 className="font-display text-5xl md:text-6xl mb-6" style={{color:'var(--text-primary)'}}>
               Compassionate Care<br/><span style={{color:'#C9A84C'}}>Since 2010</span>
             </h1>
-            <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{color:'rgba(232,228,217,0.5)'}}>
+            <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{color: 'var(--text-muted)'}}>
               Founded in Yangon's Kamayut Township, Mingalar Pet Clinic has grown from a small neighbourhood practice to one of Myanmar's most trusted veterinary centres — all while keeping the same family spirit.
             </p>
           </motion.div>
@@ -40,23 +40,23 @@ export function AboutPage() {
           {/* Logo + mission */}
           <div className="grid lg:grid-cols-2 gap-14 items-center mb-24">
             <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}}>
-              <div className="flex items-center justify-center p-10 rounded-3xl" style={{background:'rgba(11,22,40,0.7)',border:'1px solid rgba(201,168,76,0.15)'}}>
+              <div className="flex items-center justify-center p-10 rounded-3xl" style={{background: 'var(--bg-card)',border:'1px solid var(--border-gold)'}}>
                 <img src={LOGO_URI} alt="Mingalar Pet Clinic" className="w-64 h-64 object-contain" style={{filter:"drop-shadow(0 0 30px rgba(201,168,76,0.5))"}} />
               </div>
             </motion.div>
             <motion.div initial={{opacity:0,x:30}} whileInView={{opacity:1,x:0}} viewport={{once:true}}>
-              <h2 className="font-display text-3xl text-white mb-5">Our Mission</h2>
-              <p className="leading-relaxed mb-5" style={{color:'rgba(232,228,217,0.55)'}}>
+              <h2 className="font-display text-3xl mb-5" style={{color:'var(--text-primary)'}}>Our Mission</h2>
+              <p className="leading-relaxed mb-5" style={{color: 'var(--text-muted)'}}>
                 We believe every animal deserves gold-standard medical care delivered with warmth and dignity. Our team combines the latest veterinary science with genuine compassion — treating every patient as if they were our own.
               </p>
-              <p className="leading-relaxed mb-8" style={{color:'rgba(232,228,217,0.55)'}}>
+              <p className="leading-relaxed mb-8" style={{color: 'var(--text-muted)'}}>
                 From routine wellness checks to complex surgeries, we bring the same level of excellence and care to every visit, building lifelong relationships with Yangon's pet families.
               </p>
               <div className="grid grid-cols-3 gap-4">
                 {[['3,200+','Patients'],['15+','Years'],['4','Specialists']].map(([n,l])=>(
-                  <div key={l} className="text-center p-4 rounded-xl" style={{background:'rgba(201,168,76,0.07)',border:'1px solid rgba(201,168,76,0.15)'}}>
+                  <div key={l} className="text-center p-4 rounded-xl" style={{background:'rgba(201,168,76,0.07)',border:'1px solid var(--border-gold)'}}>
                     <div className="font-display text-2xl font-semibold mb-1" style={{color:'#C9A84C'}}>{n}</div>
-                    <div className="text-xs" style={{color:'rgba(232,228,217,0.4)'}}>{l}</div>
+                    <div className="text-xs" style={{color: 'var(--text-muted)'}}>{l}</div>
                   </div>
                 ))}
               </div>
@@ -65,7 +65,7 @@ export function AboutPage() {
 
           {/* Timeline */}
           <div className="mb-24">
-            <h2 className="font-display text-3xl text-white text-center mb-12">Our Journey</h2>
+            <h2 className="font-display text-3xl text-center mb-12" style={{color:'var(--text-primary)'}}>Our Journey</h2>
             <div className="relative max-w-2xl mx-auto">
               <div className="absolute left-6 top-0 bottom-0 w-px" style={{background:'linear-gradient(180deg,transparent,rgba(201,168,76,0.4),transparent)'}} />
               {MILESTONES.map((m,i)=>(
@@ -77,7 +77,7 @@ export function AboutPage() {
                   </div>
                   <div>
                     <div className="text-xs font-bold mb-1" style={{color:'#C9A84C'}}>{m.year}</div>
-                    <div className="text-sm" style={{color:'rgba(232,228,217,0.65)'}}>{m.event}</div>
+                    <div className="text-sm" style={{color: 'var(--text-primary)'}}>{m.event}</div>
                   </div>
                 </motion.div>
               ))}
@@ -86,28 +86,28 @@ export function AboutPage() {
 
           {/* Team */}
           <div className="mb-16">
-            <h2 className="font-display text-3xl text-white text-center mb-2">Our Veterinary Team</h2>
-            <p className="text-center text-sm mb-12" style={{color:'rgba(232,228,217,0.4)'}}>Board-certified specialists dedicated to excellence</p>
+            <h2 className="font-display text-3xl text-center mb-2" style={{color:'var(--text-primary)'}}>Our Veterinary Team</h2>
+            <p className="text-center text-sm mb-12" style={{color: 'var(--text-muted)'}}>Board-certified specialists dedicated to excellence</p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {VETS.map((v,i)=>(
                 <motion.div key={v.name} initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{delay:i*0.1}}
                   className="p-6 rounded-2xl text-center transition-all duration-300 hover:-translate-y-1"
-                  style={{background:'rgba(11,22,40,0.7)',border:`1px solid ${v.color}22`}}>
+                  style={{background: 'var(--bg-card)',border:`1px solid ${v.color}22`}}>
                   <div className="w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4"
                     style={{background:`${v.color}18`,border:`2px solid ${v.color}35`,color:v.color}}>{v.initials}</div>
-                  <div className="font-semibold text-white text-sm mb-1">{v.name}</div>
+                  <div className="font-semibold text-sm mb-1" style={{color:'var(--text-primary)'}} >{v.name}</div>
                   <div className="text-xs mb-2" style={{color:v.color}}>{v.spec}</div>
-                  <div className="text-xs" style={{color:'rgba(232,228,217,0.35)'}}>{v.exp} experience</div>
-                  <div className="text-xs mt-1" style={{color:'rgba(232,228,217,0.25)'}}>{v.edu}</div>
+                  <div className="text-xs" style={{color: 'var(--text-muted)'}}>{v.exp} experience</div>
+                  <div className="text-xs mt-1" style={{color: 'var(--text-muted)'}}>{v.edu}</div>
                 </motion.div>
               ))}
             </div>
           </div>
 
           {/* CTA */}
-          <div className="text-center p-12 rounded-3xl" style={{background:'rgba(11,22,40,0.7)',border:'1px solid rgba(201,168,76,0.15)'}}>
-            <h3 className="font-display text-3xl text-white mb-4">Ready to meet the team?</h3>
-            <p className="mb-8" style={{color:'rgba(232,228,217,0.45)'}}>Schedule a wellness visit and experience the Mingalar difference.</p>
+          <div className="text-center p-12 rounded-3xl" style={{background: 'var(--bg-card)',border:'1px solid var(--border-gold)'}}>
+            <h3 className="font-display text-3xl mb-4" style={{color:'var(--text-primary)'}}>Ready to meet the team?</h3>
+            <p className="mb-8" style={{color: 'var(--text-muted)'}}>Schedule a wellness visit and experience the Mingalar difference.</p>
             <Link to="/booking" className="btn-primary py-3.5 px-8 text-base">Book an Appointment →</Link>
           </div>
         </div>

@@ -1,7 +1,7 @@
 /* ================================================================
-   MINGALAR PET CLINIC — GLOBAL DESIGN SYSTEM
+   MINGALAR PET CLINIC — GLOBAL DESIGN SYSTEM v2
    Dark:  Deep Navy #0B1628 · Gold #C9A84C · Ivory #F5EFE0
-   Light: Warm Ivory #FAF7F0 · Gold #B8943E · Navy text #0B1628
+   Light: Liquid Glass — frosted ivory panels on warm parchment
    ================================================================ */
 
 @tailwind base;
@@ -23,8 +23,8 @@
   --navy-body:      #080f1c;
   --ivory:          #F5EFE0;
   --text-primary:   #e8e4d9;
-  --text-muted:     rgba(232,228,217,0.45);
-  --text-faint:     rgba(232,228,217,0.25);
+  --text-muted:     rgba(232,228,217,0.55);
+  --text-faint:     rgba(232,228,217,0.3);
 
   --bg-1:           #080f1c;
   --bg-2:           #0a1120;
@@ -41,6 +41,31 @@
   --glass-border:   rgba(201,168,76,0.12);
   --glass-strong-bg: rgba(6,12,24,0.88);
 
+  /* Dark-only hardcoded helpers — used by inline styles */
+  --dark-card-bg:         rgba(7,12,22,0.85);
+  --dark-overlay-deep:    rgba(5,10,20,0.97);
+  --dark-overlay-mid:     rgba(5,10,20,0.55);
+  --dark-overlay-light:   rgba(5,10,20,0.15);
+  --dark-surface:         rgba(8,16,32,1);
+  --chip-inactive-color:  rgba(232,228,217,0.4);
+  --chip-inactive-border: rgba(255,255,255,0.07);
+  --chip-inactive-bg:     transparent;
+  --info-label-color:     rgba(201,168,76,0.5);
+  --card-overlay-bg:      rgba(201,168,76,0.04);
+  --faq-open-bg:          rgba(201,168,76,0.04);
+  --faq-closed-bg:        rgba(255,255,255,0.02);
+  --faq-open-border:      rgba(201,168,76,0.28);
+  --faq-closed-border:    rgba(255,255,255,0.06);
+  --tab-inactive-bg:      rgba(255,255,255,0.03);
+  --tab-inactive-border:  rgba(255,255,255,0.07);
+  --tab-inactive-color:   rgba(232,228,217,0.45);
+  --arrow-btn-bg:         rgba(255,255,255,0.05);
+  --arrow-btn-border:     rgba(255,255,255,0.1);
+  --arrow-btn-color:      rgba(232,228,217,0.5);
+  --section-img-overlay:  linear-gradient(to top, rgba(5,10,20,0.98) 0%, rgba(5,10,20,0.55) 45%, rgba(5,10,20,0.1) 100%);
+  --card-inner-bg:        #07111e;
+  --facility-strip-bg:    var(--bg-card);
+
   --scrollbar-track: #080f1c;
   --scrollbar-thumb: #1e2d4a;
 
@@ -52,10 +77,12 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
-   LIGHT MODE TOKENS
+   LIGHT MODE — LIQUID GLASS DESIGN SYSTEM
+   Warm parchment base + frosted glass panels
 ══════════════════════════════════════════════════════════════ */
 [data-theme="light"] {
-  --gold:           #B8943E;
+  /* Core palette */
+  --gold:           #A07828;
   --gold-light:     #C9A84C;
   --gold-pale:      #f5e9c0;
   --navy:           #0B1628;
@@ -63,32 +90,60 @@
   --navy-body:      #FAF7F0;
   --ivory:          #F5EFE0;
   --text-primary:   #1a2540;
-  --text-muted:     rgba(26,37,64,0.55);
-  --text-faint:     rgba(26,37,64,0.3);
+  --text-muted:     rgba(26,37,64,0.62);
+  --text-faint:     rgba(26,37,64,0.38);
 
-  --bg-1:           #FAF7F0;
-  --bg-2:           #F3EDE0;
-  --bg-3:           #EDE5D4;
-  --bg-card:        rgba(255,252,245,0.9);
-  --bg-input:       rgba(255,252,245,0.95);
-  --bg-hover:       rgba(184,148,62,0.06);
+  /* Backgrounds — warm parchment layers */
+  --bg-1:           #F7F3EA;
+  --bg-2:           #EEE8D8;
+  --bg-3:           #E5DCC8;
+  --bg-card:        rgba(255,252,245,0.88);
+  --bg-input:       rgba(255,252,245,0.96);
+  --bg-hover:       rgba(160,120,40,0.07);
 
+  /* Borders */
   --border-subtle:  rgba(26,37,64,0.1);
-  --border-gold:    rgba(184,148,62,0.3);
-  --border-gold-active: rgba(184,148,62,0.7);
+  --border-gold:    rgba(160,120,40,0.28);
+  --border-gold-active: rgba(160,120,40,0.65);
 
-  --glass-bg:       rgba(255,252,245,0.82);
-  --glass-border:   rgba(184,148,62,0.2);
-  --glass-strong-bg: rgba(250,247,240,0.95);
+  /* Liquid glass — frosted white panels */
+  --glass-bg:       rgba(255,252,245,0.72);
+  --glass-border:   rgba(160,120,40,0.18);
+  --glass-strong-bg: rgba(255,252,245,0.95);
+
+  /* Light-mode overrides for inline dark styles */
+  --dark-card-bg:         rgba(255,252,245,0.9);
+  --dark-overlay-deep:    rgba(240,235,220,0.96);
+  --dark-overlay-mid:     rgba(240,235,220,0.6);
+  --dark-overlay-light:   rgba(240,235,220,0.2);
+  --dark-surface:         #EEE8D8;
+  --chip-inactive-color:  rgba(26,37,64,0.5);
+  --chip-inactive-border: rgba(26,37,64,0.12);
+  --chip-inactive-bg:     rgba(255,255,255,0.4);
+  --info-label-color:     rgba(160,120,40,0.65);
+  --card-overlay-bg:      rgba(160,120,40,0.06);
+  --faq-open-bg:          rgba(160,120,40,0.06);
+  --faq-closed-bg:        rgba(255,255,255,0.6);
+  --faq-open-border:      rgba(160,120,40,0.32);
+  --faq-closed-border:    rgba(26,37,64,0.1);
+  --tab-inactive-bg:      rgba(255,255,255,0.6);
+  --tab-inactive-border:  rgba(26,37,64,0.12);
+  --tab-inactive-color:   rgba(26,37,64,0.5);
+  --arrow-btn-bg:         rgba(255,255,255,0.7);
+  --arrow-btn-border:     rgba(26,37,64,0.15);
+  --arrow-btn-color:      rgba(26,37,64,0.6);
+  --section-img-overlay:  linear-gradient(to top, rgba(240,235,220,0.0) 0%, rgba(240,235,220,0.0) 100%);
+  --card-inner-bg:        rgba(255,252,245,0.9);
+  --facility-strip-bg:    rgba(255,252,245,0.92);
 
   --scrollbar-track: #FAF7F0;
   --scrollbar-thumb: #d4c89a;
 
-  --navbar-bg:      rgba(250,247,240,0.92);
-  --navbar-border:  rgba(184,148,62,0.18);
+  --navbar-bg:      rgba(247,243,234,0.92);
+  --navbar-border:  rgba(160,120,40,0.18);
 
-  --shadow-card:    0 4px 24px rgba(26,37,64,0.1);
-  --shadow-gold:    0 0 24px rgba(184,148,62,0.2);
+  --shadow-card:    0 4px 32px rgba(26,37,64,0.1), 0 1px 8px rgba(26,37,64,0.06);
+  --shadow-gold:    0 0 24px rgba(160,120,40,0.18);
 }
 
 /* ── Base Reset ──────────────────────────────────────────────── */
@@ -127,11 +182,11 @@
   .bg-navy-deep { background: var(--navy-deep); }
   .bg-navy-card { background: var(--bg-card); }
 
-  /* ─── Glass ─── */
+  /* ─── Glass — Liquid Glass in light mode ─── */
   .glass {
     background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--glass-border);
   }
   .glass-gold {
@@ -142,8 +197,8 @@
   }
   .glass-strong {
     background: var(--glass-strong-bg);
-    backdrop-filter: blur(32px);
-    -webkit-backdrop-filter: blur(32px);
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
     border: 1px solid var(--glass-border);
   }
   .glass-navy {
@@ -152,10 +207,18 @@
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--border-subtle);
   }
-  /* light mode: green badge for hero live indicator */
   .glass-green {
     background: var(--bg-hover);
     border: 1px solid var(--border-gold);
+  }
+
+  /* ─── Liquid Glass Panel (new class for light mode) ─── */
+  .liquid-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(180%) brightness(1.02);
+    -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.02);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,0.5);
   }
 
   /* ─── 3D Card ─── */
@@ -434,13 +497,380 @@
 .hero-orb  { position: absolute; border-radius: 50%; pointer-events: none; mix-blend-mode: screen; }
 .blob      { border-radius: 30% 70% 70% 30%/30% 30% 70% 70%; animation: morphBlob 8s ease-in-out infinite; filter: blur(60px); }
 
-/* ── Light mode overrides for specific hard-coded colors ─────── */
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — COMPREHENSIVE OVERRIDES
+   These patch hardcoded dark inline colors in JSX components
+══════════════════════════════════════════════════════════════ */
+
+/* ── Typography ─────────────────────────────────────────────── */
 [data-theme="light"] .text-white         { color: var(--text-primary) !important; }
 [data-theme="light"] .text-white\/50     { color: rgba(26,37,64,0.5) !important; }
 [data-theme="light"] .text-white\/40     { color: rgba(26,37,64,0.4) !important; }
 [data-theme="light"] .text-white\/30     { color: rgba(26,37,64,0.3) !important; }
 [data-theme="light"] .text-white\/25     { color: rgba(26,37,64,0.25) !important; }
-[data-theme="light"] .bg-\[\#080f1c\]   { background: var(--bg-1) !important; }
-[data-theme="light"] .bg-\[\#07101e\]   { background: var(--bg-1) !important; }
-[data-theme="light"] .bg-\[\#05080f\]   { background: var(--bg-1) !important; }
-[data-theme="light"] .bg-\[rgba\(7\,12\,22\,0\.9\)\] { background: var(--glass-bg) !important; }
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4 {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] p {
+  color: var(--text-muted);
+}
+
+/* ── Section backgrounds ─────────────────────────────────────── */
+[data-theme="light"] .bg-bg-1 { background: var(--bg-1) !important; }
+[data-theme="light"] .bg-bg-2 { background: var(--bg-2) !important; }
+[data-theme="light"] .bg-bg-3 { background: var(--bg-3) !important; }
+[data-theme="light"] .bg-bg   { background: var(--bg-1) !important; }
+[data-theme="light"] .bg-\\[\\#080f1c\\]   { background: var(--bg-1) !important; }
+[data-theme="light"] .bg-\\[\\#07101e\\]   { background: var(--bg-1) !important; }
+[data-theme="light"] .bg-\\[\\#05080f\\]   { background: var(--bg-1) !important; }
+
+/* ── Glass cards ─────────────────────────────────────────────── */
+[data-theme="light"] .glass {
+  background: rgba(255,252,245,0.75) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(160,120,40,0.18) !important;
+  box-shadow: 0 2px 20px rgba(26,37,64,0.08), inset 0 1px 0 rgba(255,255,255,0.6) !important;
+}
+[data-theme="light"] .glass-strong {
+  background: rgba(255,252,245,0.95) !important;
+  backdrop-filter: blur(32px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
+  box-shadow: 0 4px 32px rgba(26,37,64,0.12), inset 0 1px 0 rgba(255,255,255,0.7) !important;
+}
+[data-theme="light"] .glass-gold {
+  background: rgba(160,120,40,0.07) !important;
+  border: 1px solid rgba(160,120,40,0.22) !important;
+}
+[data-theme="light"] .liquid-glass {
+  background: rgba(255,252,245,0.75) !important;
+  box-shadow: 0 4px 24px rgba(26,37,64,0.1), inset 0 1px 0 rgba(255,255,255,0.6) !important;
+}
+
+/* ── Form inputs ─────────────────────────────────────────────── */
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-textarea,
+[data-theme="light"] .form-select {
+  background: rgba(255,252,245,0.95) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-gold) !important;
+}
+
+/* ── Sidebar ────────────────────────────────────────────────── */
+[data-theme="light"] .sidebar-item { color: var(--text-muted) !important; }
+[data-theme="light"] .sidebar-item:hover { background: var(--bg-hover) !important; color: var(--text-primary) !important; }
+[data-theme="light"] .sidebar-item.active { background: rgba(160,120,40,0.1) !important; color: var(--gold) !important; }
+
+/* ── Data table ─────────────────────────────────────────────── */
+[data-theme="light"] .data-table th { color: var(--gold) !important; border-bottom-color: var(--border-gold) !important; }
+[data-theme="light"] .data-table td { color: var(--text-muted) !important; border-bottom-color: var(--border-subtle) !important; }
+[data-theme="light"] .data-table thead { background: rgba(160,120,40,0.06) !important; }
+
+/* ── Step indicator ─────────────────────────────────────────── */
+[data-theme="light"] .step-num { border-color: var(--border-gold) !important; color: var(--text-muted) !important; }
+[data-theme="light"] .step-num.active { border-color: var(--gold) !important; color: var(--gold) !important; }
+[data-theme="light"] .step-num.done { background: var(--gold) !important; color: #0B1628 !important; }
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+[data-theme="light"] ::-webkit-scrollbar-track { background: var(--scrollbar-track) !important; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb) !important; }
+
+/* ── Token utility classes ──────────────────────────────────── */
+.text-token-primary { color: var(--text-primary) !important; }
+.text-token-muted   { color: var(--text-muted)   !important; }
+.text-token-faint   { color: var(--text-faint)   !important; }
+.bg-token-card      { background: var(--bg-card)  !important; }
+.bg-token-input     { background: var(--bg-input) !important; }
+.border-token       { border-color: var(--border-subtle) !important; }
+.border-token-gold  { border-color: var(--border-gold)   !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHT MODE — SECTION-SPECIFIC LIQUID GLASS STYLES
+   These override hardcoded JSX inline styles via CSS
+══════════════════════════════════════════════════════════════ */
+
+/* ── Services Section card shell ────────────────────────────── */
+[data-theme="light"] .services-card-inner {
+  background: rgba(255,252,245,0.9) !important;
+  border-color: rgba(160,120,40,0.2) !important;
+}
+
+/* ── Vet card shell ─────────────────────────────────────────── */
+[data-theme="light"] .vet-photo-card {
+  background: rgba(255,252,245,0.9) !important;
+  border-color: rgba(160,120,40,0.2) !important;
+}
+
+/* ── FAQ accordion items ────────────────────────────────────── */
+[data-theme="light"] .faq-item-open {
+  background: rgba(160,120,40,0.06) !important;
+  border-color: rgba(160,120,40,0.3) !important;
+}
+[data-theme="light"] .faq-item-closed {
+  background: rgba(255,255,255,0.7) !important;
+  border-color: rgba(26,37,64,0.1) !important;
+}
+[data-theme="light"] .faq-item-closed:hover {
+  background: rgba(255,255,255,0.9) !important;
+  border-color: rgba(160,120,40,0.2) !important;
+}
+
+/* ── Blog slider frame ──────────────────────────────────────── */
+[data-theme="light"] .blog-slider-frame {
+  border-color: rgba(160,120,40,0.3) !important;
+}
+
+/* ── Testimonials section ───────────────────────────────────── */
+[data-theme="light"] .testimonial-card {
+  background: rgba(255,252,245,0.85) !important;
+  border-color: rgba(26,37,64,0.1) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 2px 12px rgba(26,37,64,0.06) !important;
+}
+
+/* ── Facilities strip ───────────────────────────────────────── */
+[data-theme="light"] .facility-strip {
+  background: rgba(255,252,245,0.92) !important;
+  border-top-color: rgba(160,120,40,0.15) !important;
+}
+[data-theme="light"] .facility-stat-badge {
+  background: rgba(255,252,245,0.9) !important;
+}
+
+/* ── Award cards ────────────────────────────────────────────── */
+[data-theme="light"] .award-card {
+  background: rgba(255,252,245,0.8) !important;
+  border-color: rgba(160,120,40,0.15) !important;
+  box-shadow: 0 2px 12px rgba(26,37,64,0.07) !important;
+}
+
+/* ── Navigation arrows (light) ──────────────────────────────── */
+[data-theme="light"] .nav-arrow-btn {
+  background: rgba(255,255,255,0.8) !important;
+  border-color: rgba(26,37,64,0.15) !important;
+  color: rgba(26,37,64,0.6) !important;
+}
+
+/* ── Chip/tab buttons ───────────────────────────────────────── */
+[data-theme="light"] .chip-inactive {
+  background: rgba(255,255,255,0.6) !important;
+  border-color: rgba(26,37,64,0.12) !important;
+  color: rgba(26,37,64,0.55) !important;
+}
+
+/* ── Still-have-questions CTA ───────────────────────────────── */
+[data-theme="light"] .faq-cta-box {
+  background: rgba(160,120,40,0.06) !important;
+  border-color: var(--border-gold) !important;
+}
+
+/* ── Call/message ghost buttons in FAQ ──────────────────────── */
+[data-theme="light"] .faq-ghost-btn {
+  background: rgba(255,255,255,0.7) !important;
+  border-color: rgba(26,37,64,0.15) !important;
+  color: rgba(26,37,64,0.7) !important;
+}
+
+/* ── Location section cards ─────────────────────────────────── */
+[data-theme="light"] .location-info-card {
+  background: rgba(255,252,245,0.9) !important;
+  border-color: rgba(26,37,64,0.1) !important;
+}
+[data-theme="light"] .location-map-frame {
+  background: rgba(255,252,245,0.85) !important;
+  border-color: rgba(160,120,40,0.2) !important;
+}
+
+/* ── Services section chip list bg ──────────────────────────── */
+[data-theme="light"] .services-chip-panel {
+  background: rgba(255,252,245,0.88) !important;
+  border-right-color: rgba(160,120,40,0.1) !important;
+}
+[data-theme="light"] .services-main-frame {
+  background: rgba(255,250,242,0.92) !important;
+  border-color: rgba(160,120,40,0.18) !important;
+}
+
+/* ── Services card inner (the photo card shell) ─────────────── */
+[data-theme="light"] .service-photo-card {
+  border-color: rgba(160,120,40,0.22) !important;
+}
+
+/* ── Blog slider overlay (keep image readable in light) ─────── */
+[data-theme="light"] .blog-img-overlay {
+  opacity: 0.55 !important;
+}
+[data-theme="light"] .blog-gradient-overlay {
+  background: linear-gradient(to top, rgba(247,243,234,0.97) 0%, rgba(247,243,234,0.4) 50%, transparent 100%) !important;
+}
+[data-theme="light"] .blog-gradient-overlay-side {
+  background: linear-gradient(to right, rgba(247,243,234,0.55) 0%, transparent 55%) !important;
+}
+
+/* ── Services section image overlays ────────────────────────── */
+[data-theme="light"] .service-gradient-overlay {
+  background: linear-gradient(to top, rgba(247,243,234,0.97) 0%, rgba(247,243,234,0.6) 45%, rgba(247,243,234,0.1) 100%) !important;
+}
+
+/* ── Vet photo card overlays ────────────────────────────────── */
+[data-theme="light"] .vet-gradient-overlay {
+  background: linear-gradient(to top, rgba(247,243,234,0.95) 0%, rgba(247,243,234,0.45) 50%, transparent 100%) !important;
+}
+
+/* ── Facilities image overlays ──────────────────────────────── */
+[data-theme="light"] .facility-gradient-overlay {
+  background: linear-gradient(to top, rgba(247,243,234,0.97) 0%, rgba(247,243,234,0.46) 48%, transparent 100%) !important;
+}
+[data-theme="light"] .facility-gradient-overlay-side {
+  background: linear-gradient(to right, rgba(247,243,234,0.48) 0%, transparent 60%) !important;
+}
+
+/* ── Gradient text uses gold token (already correct) ────────── */
+/* ── Force text on photo cards to be dark in light mode ─────── */
+[data-theme="light"] .photo-card-title {
+  color: var(--text-primary) !important;
+  text-shadow: none !important;
+}
+[data-theme="light"] .photo-card-meta {
+  color: var(--text-muted) !important;
+}
+
+/* ── Services "what's included" inner card ───────────────────── */
+[data-theme="light"] .whats-included-card {
+  background: rgba(255,252,245,0.95) !important;
+  border-color: rgba(160,120,40,0.15) !important;
+}
+[data-theme="light"] .included-item-text {
+  color: var(--text-muted) !important;
+}
+
+/* ── Services stat bar at bottom of chip panel ───────────────── */
+[data-theme="light"] .services-stat-bar {
+  background: rgba(255,252,245,0.92) !important;
+  border-color: rgba(160,120,40,0.14) !important;
+}
+
+/* ── Testimonials marquee edge fades ────────────────────────── */
+[data-theme="light"] .testimonials-fade-top {
+  background: linear-gradient(to bottom, var(--bg-2), transparent) !important;
+}
+[data-theme="light"] .testimonials-fade-bottom {
+  background: linear-gradient(to top, var(--bg-2), transparent) !important;
+}
+[data-theme="light"] .testimonials-fade-left {
+  background: linear-gradient(to right, var(--bg-2), transparent) !important;
+}
+[data-theme="light"] .testimonials-fade-right {
+  background: linear-gradient(to left, var(--bg-2), transparent) !important;
+}
+
+/* ── Hero left side — keep text visible over photo ──────────── */
+[data-theme="light"] #hero-heading { color: #fff !important; }
+[data-theme="light"] .hero-left-text { color: #fff !important; }
+
+/* ══════════════════════════════════════════════════════════════
+   HERO LIGHT MODE OVERLAYS
+   Hero has a real photo — keep overlays but lighten them
+══════════════════════════════════════════════════════════════ */
+[data-theme="light"] .hero-overlay-bottom {
+  background: linear-gradient(to top,
+    rgba(247,243,234,0.92) 0%,
+    rgba(247,243,234,0.55) 18%,
+    rgba(247,243,234,0.15) 45%,
+    transparent 100%) !important;
+}
+[data-theme="light"] .hero-overlay-top {
+  background: linear-gradient(to bottom,
+    rgba(247,243,234,0.75) 0%,
+    rgba(247,243,234,0.2) 18%,
+    transparent 40%) !important;
+}
+[data-theme="light"] .hero-overlay-side {
+  background: linear-gradient(to right,
+    rgba(247,243,234,0.88) 0%,
+    rgba(247,243,234,0.55) 40%,
+    rgba(247,243,234,0.1) 70%,
+    transparent 100%) !important;
+}
+
+/* Hero text stays legible over photo */
+[data-theme="light"] .hero-left-text,
+[data-theme="light"] #hero-heading,
+[data-theme="light"] .hero-text-block { color: var(--text-primary) !important; }
+
+/* ── Footer light mode ──────────────────────────────────────── */
+[data-theme="light"] footer {
+  background: var(--bg-3) !important;
+  border-top-color: var(--border-gold) !important;
+}
+[data-theme="light"] footer a { color: var(--text-muted) !important; }
+[data-theme="light"] footer a:hover { color: var(--gold) !important; }
+
+/* ── CTA Section light mode ─────────────────────────────────── */
+[data-theme="light"] .cta-section {
+  background: linear-gradient(135deg, var(--bg-2) 0%, var(--bg-3) 100%) !important;
+}
+
+/* ── Login / Register pages ──────────────────────────────────── */
+[data-theme="light"] .auth-card {
+  background: rgba(255,252,245,0.92) !important;
+  border-color: var(--border-gold) !important;
+}
+
+/* ── Booking page ────────────────────────────────────────────── */
+[data-theme="light"] .booking-step-card {
+  background: rgba(255,252,245,0.9) !important;
+  border-color: var(--border-gold) !important;
+}
+
+/* ── Admin / Staff sidebar ───────────────────────────────────── */
+[data-theme="light"] .admin-sidebar {
+  background: var(--bg-3) !important;
+  border-right-color: var(--border-subtle) !important;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+[data-theme="light"] ::-webkit-scrollbar-track { background: var(--bg-2) !important; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--border-gold) !important; }
+
+/* ── Responsive tweaks ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  [data-theme="light"] .glass { backdrop-filter: blur(12px) !important; -webkit-backdrop-filter: blur(12px) !important; }
+  [data-theme="light"] .liquid-glass { backdrop-filter: blur(12px) !important; -webkit-backdrop-filter: blur(12px) !important; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO CARD TEXT & HEADING — LIGHT MODE
+══════════════════════════════════════════════════════════════ */
+
+/* Default (dark mode): white */
+.hero-card-text    { color: #ffffff; }
+.hero-heading-text { color: #ffffff; }
+
+/* Light mode: swap to dark text */
+[data-theme="light"] .hero-card-text    { color: var(--text-primary) !important; }
+[data-theme="light"] .hero-heading-text { color: var(--text-primary) !important; }
+
+/* ── Remaining text-white overrides inside glass cards (light) ─ */
+[data-theme="light"] .glass p,
+[data-theme="light"] .glass span,
+[data-theme="light"] .glass h2,
+[data-theme="light"] .glass h3,
+[data-theme="light"] .liquid-glass p,
+[data-theme="light"] .liquid-glass span,
+[data-theme="light"] .liquid-glass h2,
+[data-theme="light"] .liquid-glass h3 {
+  /* Only override pure white — gold, muted-rgba stay untouched */
+}
+
+/* Force any remaining inline color:#fff inside glass panels */
+[data-theme="light"] .glass [style*="color: '#fff'"],
+[data-theme="light"] .glass [style*="color:'#fff'"] {
+  color: var(--text-primary) !important;
+}

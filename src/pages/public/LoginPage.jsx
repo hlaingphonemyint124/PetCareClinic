@@ -63,7 +63,7 @@ export function LoginPage() {
 
         {/* Center tagline */}
         <div className="relative z-10">
-          <div className="font-display text-4xl text-white leading-tight mb-4">
+          <div className="font-display text-4xl text-token-primary leading-tight mb-4">
             Caring for your<br/><span style={{color:'#C9A84C'}}>beloved pets</span>
           </div>
           <p className="text-sm leading-relaxed" style={{color: 'var(--text-muted)'}}>
@@ -74,13 +74,13 @@ export function LoginPage() {
             {[['3,200+','Pet Patients'],['15+','Years of Care'],['4','Specialist Vets'],['24/7','Emergency']].map(([n,l])=>(
               <div key={l} className="p-3 rounded-xl" style={{background:'rgba(201,168,76,0.06)',border:'1px solid rgba(201,168,76,0.12)'}}>
                 <div className="font-display text-xl font-semibold" style={{color:'#C9A84C'}}>{n}</div>
-                <div className="text-xs mt-0.5" style={{color:'rgba(232,228,217,0.4)'}}>{l}</div>
+                <div className="text-xs mt-0.5" style={{color: 'var(--text-muted)'}}>{l}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="text-xs relative z-10" style={{color:'rgba(232,228,217,0.2)'}}>© 2026 Mingalar Pet Clinic · Yangon, Myanmar</div>
+        <div className="text-xs relative z-10" style={{color: 'var(--text-muted)'}}>© 2026 Mingalar Pet Clinic · Yangon, Myanmar</div>
       </div>
 
       {/* Right panel — form */}
@@ -93,8 +93,8 @@ export function LoginPage() {
           </div>
 
           <div className="mb-8">
-            <h1 className="font-display text-3xl text-white mb-2">Welcome back</h1>
-            <p className="text-sm" style={{color:'rgba(232,228,217,0.4)'}}>Sign in to access your dashboard</p>
+            <h1 className="font-display text-3xl text-token-primary mb-2">Welcome back</h1>
+            <p className="text-sm" style={{color: 'var(--text-muted)'}}>Sign in to access your dashboard</p>
           </div>
 
           {/* Quick login demo pills */}
@@ -110,7 +110,7 @@ export function LoginPage() {
                     {acc.avatar}
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs font-semibold text-white truncate leading-none">{acc.name.split(' ')[0]}</div>
+                    <div className="text-xs font-semibold text-token-primary truncate leading-none">{acc.name.split(' ')[0]}</div>
                     <div className="text-[10px] capitalize mt-0.5 truncate" style={{color:ROLE_COLORS[acc.role]}}>{acc.role}</div>
                   </div>
                 </button>
@@ -126,12 +126,12 @@ export function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color:'rgba(232,228,217,0.5)'}}>Email Address</label>
+              <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color: 'var(--text-muted)'}}>Email Address</label>
               <input className="form-input" type="email" placeholder="you@example.com"
                 value={email} onChange={e=>setEmail(e.target.value)} required />
             </div>
             <div>
-              <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color:'rgba(232,228,217,0.5)'}}>Password</label>
+              <label className="block text-xs font-semibold mb-1.5 tracking-wide" style={{color: 'var(--text-muted)'}}>Password</label>
               <input className="form-input" type="password" placeholder="••••••••"
                 value={password} onChange={e=>setPassword(e.target.value)} required />
             </div>

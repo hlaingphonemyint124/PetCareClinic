@@ -72,15 +72,15 @@ function HeroBg({ current, onDotClick }) {
       {/* Multi-layer overlay for readability */}
       {/* Bottom-up dark band */}
       <div className="absolute inset-0"
-        style={{ background: 'linear-gradient(to top, rgba(5,10,20,1) 0%, rgba(5,10,20,0.82) 18%, rgba(5,10,20,0.4) 45%, rgba(5,10,20,0.2) 100%)' }}
+        className="hero-overlay-bottom" style={{ background: 'linear-gradient(to top, rgba(5,10,20,1) 0%, rgba(5,10,20,0.82) 18%, rgba(5,10,20,0.4) 45%, rgba(5,10,20,0.2) 100%)' }}
       />
       {/* Top-down navbar band */}
       <div className="absolute inset-0"
-        style={{ background: 'linear-gradient(to bottom, rgba(5,10,20,0.85) 0%, rgba(5,10,20,0.3) 18%, transparent 40%)' }}
+        className="hero-overlay-top" style={{ background: 'linear-gradient(to bottom, rgba(5,10,20,0.85) 0%, rgba(5,10,20,0.3) 18%, transparent 40%)' }}
       />
       {/* Left vignette — keeps text readable at all times */}
       <div className="absolute inset-0"
-        style={{ background: 'linear-gradient(to right, rgba(5,10,20,0.85) 0%, rgba(5,10,20,0.5) 40%, rgba(5,10,20,0.15) 70%, transparent 100%)' }}
+        className="hero-overlay-side" style={{ background: 'linear-gradient(to right, rgba(5,10,20,0.85) 0%, rgba(5,10,20,0.5) 40%, rgba(5,10,20,0.15) 70%, transparent 100%)' }}
       />
 
     </div>
@@ -257,7 +257,7 @@ function VetCard({ pet }) {
           {pet.initials}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-white text-sm font-semibold leading-none mb-0.5">{pet.vet}</p>
+          <p className="text-sm font-semibold leading-none mb-0.5 hero-card-text">{pet.vet}</p>
           <p className="text-xs leading-none mb-1" style={{ color: pet.accent }}>{pet.spec}</p>
           <p className="text-[10px] truncate" style={{ color: 'rgba(232,228,217,0.3)' }}>{pet.tagline}</p>
         </div>
@@ -291,7 +291,7 @@ function MobileCTA() {
           <div className="glass rounded-2xl p-3 flex items-center gap-3 shadow-2xl"
             style={{ border: '1px solid rgba(201,168,76,0.22)' }}>
             <div className="flex-1 min-w-0">
-              <p className="text-white text-xs font-semibold">Next slot: Today · 2:30 PM</p>
+              <p className="text-xs font-semibold hero-card-text">Next slot: Today · 2:30 PM</p>
               <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.38)' }}>Dr. Htet Aung · Available now</p>
             </div>
             <Link to="/booking"
@@ -361,7 +361,7 @@ export default function Hero() {
                     { text: 'Your Pet',  delay: 0.06 },
                     { text: 'Deserves', delay: 0.14 },
                   ].map(({ text, delay }) => (
-                    <motion.span key={text} className="block text-white"
+                    <motion.span key={text} className="block hero-heading-text"
                       initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
                       transition={{ delay, duration: 0.55 }}>
                       {text}
@@ -372,7 +372,7 @@ export default function Hero() {
                     transition={{ delay: 0.22, duration: 0.55 }}>
                     Exceptional
                   </motion.span>
-                  <motion.span className="block text-white"
+                  <motion.span className="block hero-heading-text"
                     initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.30, duration: 0.55 }}>
                     Care & Love
@@ -452,7 +452,7 @@ export default function Hero() {
                 {/* Main tilt card */}
                 <TiltCard
                   className="glass rounded-3xl p-5 overflow-hidden relative"
-                  style={{ background: 'rgba(5,10,20,0.85)', border: '1px solid rgba(201,168,76,0.14)' }}
+                  style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
                 >
                   {/* Ambient tinted bg */}
                   <div className="absolute inset-0 pointer-events-none transition-all duration-700 rounded-3xl"
@@ -467,7 +467,7 @@ export default function Hero() {
                         style={{ filter: 'drop-shadow(0 0 6px rgba(201,168,76,0.45))' }}
                       />
                       <div>
-                        <p className="font-display text-white text-sm leading-none mb-0.5">
+                        <p className="font-display text-sm leading-none mb-0.5 hero-card-text">
                           Mingalar Pet Clinic
                         </p>
                         <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.28)' }}>
@@ -564,7 +564,7 @@ export default function Hero() {
                     📅
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-white text-xs font-semibold">Next available slot</p>
+                    <p className="text-xs font-semibold hero-card-text">Next available slot</p>
                     <p className="text-[11px] mt-0.5" style={{ color: 'rgba(255,255,255,0.33)' }}>
                       Today · 2:30 PM with {pet.vet}
                     </p>

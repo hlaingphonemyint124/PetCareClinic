@@ -86,7 +86,7 @@ export function BlogDetailPage() {
     return (
       <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="text-center">
-          <p className="text-white/40 mb-4">Article not found.</p>
+          <p className="text-token-primary/40 mb-4">Article not found.</p>
           <Link to="/blog" className="btn-primary px-6 py-3">Back to Blog</Link>
         </div>
       </div>
@@ -111,7 +111,7 @@ export function BlogDetailPage() {
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to top, rgba(5,10,20,1) 0%, rgba(5,10,20,0.55) 50%, rgba(5,10,20,0.15) 100%)',
+              'linear-gradient(to top, rgba(5,10,20,0.95) 0%, rgba(5,10,20,0.55) 50%, rgba(5,10,20,0.15) 100%)',
           }}
         />
         {/* Gold corner */}
@@ -136,8 +136,8 @@ export function BlogDetailPage() {
             className="flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all duration-200"
             style={{
               background: 'var(--bg-card)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              color: 'rgba(232,228,217,0.6)',
+              border: '1px solid var(--border-subtle)',
+              color: 'var(--text-primary)',
               backdropFilter: 'blur(16px)',
             }}
             onMouseEnter={e => { e.currentTarget.style.color = '#C9A84C'; e.currentTarget.style.borderColor = 'rgba(201,168,76,0.3)' }}
@@ -169,7 +169,7 @@ export function BlogDetailPage() {
             </div>
 
             <h1
-              className="font-display text-white text-3xl md:text-5xl font-semibold leading-tight mb-4"
+              className="font-display text-token-primary text-3xl md:text-5xl font-semibold leading-tight mb-4"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
             >
               {post.title}
@@ -200,7 +200,7 @@ export function BlogDetailPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + i * 0.06 }}
               className="text-base md:text-lg leading-relaxed"
-              style={{ color: 'rgba(232,228,217,0.72)' }}
+              style={{ color: 'var(--text-primary)' }}
             >
               {para}
             </motion.p>
@@ -224,7 +224,7 @@ export function BlogDetailPage() {
               className="group flex items-center gap-4 p-5 rounded-2xl transition-all duration-300"
               style={{
                 background: 'var(--bg-input)',
-                border: '1px solid rgba(255,255,255,0.06)',
+                border: '1px solid var(--border-subtle)',
               }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.25)' }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)' }}
@@ -232,7 +232,7 @@ export function BlogDetailPage() {
               <ChevronLeft size={18} style={{ color: 'rgba(201,168,76,0.6)', flexShrink: 0 }} />
               <div className="min-w-0">
                 <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: 'rgba(201,168,76,0.5)' }}>Previous</p>
-                <p className="text-sm font-medium text-white truncate group-hover:text-[#C9A84C] transition-colors">{prevPost.title}</p>
+                <p className="text-sm font-medium text-token-primary truncate group-hover:text-[#C9A84C] transition-colors">{prevPost.title}</p>
               </div>
             </Link>
           ) : <div />}
@@ -243,14 +243,14 @@ export function BlogDetailPage() {
               className="group flex items-center gap-4 p-5 rounded-2xl text-right justify-end transition-all duration-300"
               style={{
                 background: 'var(--bg-input)',
-                border: '1px solid rgba(255,255,255,0.06)',
+                border: '1px solid var(--border-subtle)',
               }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.25)' }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)' }}
             >
               <div className="min-w-0">
                 <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: 'rgba(201,168,76,0.5)' }}>Next</p>
-                <p className="text-sm font-medium text-white truncate group-hover:text-[#C9A84C] transition-colors">{nextPost.title}</p>
+                <p className="text-sm font-medium text-token-primary truncate group-hover:text-[#C9A84C] transition-colors">{nextPost.title}</p>
               </div>
               <ChevronRight size={18} style={{ color: 'rgba(201,168,76,0.6)', flexShrink: 0 }} />
             </Link>
@@ -260,7 +260,7 @@ export function BlogDetailPage() {
         {/* ── Related articles ── */}
         <div>
           <h2
-            className="font-display text-white text-2xl mb-6"
+            className="font-display text-token-primary text-2xl mb-6"
           >
             More <span className="gradient-text italic">Articles</span>
           </h2>
@@ -277,7 +277,7 @@ export function BlogDetailPage() {
                   className="group block rounded-2xl overflow-hidden transition-all duration-300"
                   style={{
                     background: 'var(--bg-input)',
-                    border: '1px solid rgba(255,255,255,0.06)',
+                    border: '1px solid var(--border-subtle)',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.25)'; e.currentTarget.style.transform = 'translateY(-3px)' }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'translateY(0)' }}
@@ -304,7 +304,7 @@ export function BlogDetailPage() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <h4 className="text-white text-xs font-semibold leading-snug mb-2 group-hover:text-[#C9A84C] transition-colors line-clamp-2">
+                    <h4 className="text-token-primary text-xs font-semibold leading-snug mb-2 group-hover:text-[#C9A84C] transition-colors line-clamp-2">
                       {b.title}
                     </h4>
                     <p className="text-[10px]" style={{ color: 'var(--text-faint)' }}>
